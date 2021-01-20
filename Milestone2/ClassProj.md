@@ -91,7 +91,8 @@ Go through all the information gathered during the previous round of elicitation
 
 ## Identify Non-Functional Requirements
 1. English is the default language, but we must support visitors and data in other character sets
-2. Making the UI user-friendly (can be expanded)
+2. Following style rules
+3. Formatting the displayed information in a readable and easily understandable manner
  
 
 ## Identify Functional Requirements (In User Story Format)
@@ -99,6 +100,7 @@ Go through all the information gathered during the previous round of elicitation
 E: Epic  
 U: User Story  
 T: Task  
+Ex:
  [U] As a visitor to the site I would like to see a fantastic and modern homepage that introduces me to the site and the features currently available.
  [T] Create starter ASP dot NET Core MVC Web Application with Individual User Accounts and no unit test project
 [T] Choose CSS library (Bootstrap 4, or ?) and use it for all pages
@@ -116,17 +118,18 @@ T: Task
 [T]
 [T]
 [U]
-[T]
+[T] Example end
 
 1. [U]As a visitor to the site, I want to be able to see information about a specified peak within a specified time span, so that I can learn about the specified peak.
 2. [U]As a visitor to the site, I want to see information about expeditions within a specified time span, so that I can look for interesting trends in data.
 3. [U]As someone who is wanting to make an expedition, I want to see information about peaks based on some search criteria so that I can make my expedition my own.
 4. [U]As a visitor to the site, I want to be able to see current and future expeditions, so I can feel invested in the journey.
-5. [E]As a member of the site, I want to easily manage team members of an expedition that I created.
-    * As a provider of information, I want to easily manage the members of an expedition that I created so that the form is easier to 
-6. [E]As a visitor to the site, I want to search the site with more options in a hidden tab so I can find expeditions or peaks with interesting information.
-7. [E]As an employee of the company, I want to administer the site and database so I can review information in the database.
-As an employee, I want to edit any and all information in the database so I can correct mistakes and remove false information.
+5. [U]As a provider of information, I want to easily manage the members of an expedition that I created so that the form is easier to fill out.
+6. [U]As a visitor to the site, I want to search the site with more options in a hidden tab so I can find expeditions or peaks with interesting information.
+7. [U]As an employee, I want to edit database information so that I can correct incorrect information.
+8. [U]As a visitor to the site, I want to be able to make a post in the site's forum so that I can communicate with others in the community.
+9. [U]As a visitor to the site, I want to be able to comment on someone's forum post so that I can more specifically respond to them.
+10. [U]As an employee, I want to delete someone's forum post so that I can keep the community on track and welcoming.
 
 ## Initial Architecture Envisioning
     Diagrams and drawings, lists of components
