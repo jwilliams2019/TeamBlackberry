@@ -136,6 +136,10 @@ Ex:
 
 ## Agile Data Modeling
     Diagrams, SQL modeling (dbdiagram.io), UML diagrams
+    Two pictrues because one is very big.
+    DBDiagram picture 1: https://i.gyazo.com/2a1b3990190069f03aaff7c66a7698d7.png
+    DBDiagram picture 2: https://i.gyazo.com/a7cbd227f60930145a1b98d1cd79f0eb.png
+    
 
 ## Timeline and Release Plan
     Schedule: meaningful dates, milestones, sprint cadence, how releases are made (CI/CD, or fixed releases, or ?)
