@@ -1,2 +1,4 @@
 # Team Blackberry
-When the project has been agreed upon, this will reflect accordingly.
+Our class (dummy) project document is in the MS2 folder.
+
+Our team project summaries are in the TeamBlackberry folder.
