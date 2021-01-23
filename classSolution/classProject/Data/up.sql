@@ -17,7 +17,8 @@ CREATE TABLE [Expedition] (
   [TerminationReason] NVARCHAR(80),
   [OxygenUsed]        BIT,
   [PeakID]            INT,
-  [TrekkingAgencyID]  INT
+  [TrekkingAgencyID]  INT,
+  [LoginID]           INT
 )
 GO
 
@@ -27,6 +28,15 @@ CREATE TABLE [TrekkingAgency] (
 )
 GO
 
+CREATE TABLE [Login] (
+  [ID]          INT PRIMARY KEY IDENTITY(1, 1),
+  [Username]    NVARCHAR(31),
+  [Password]    NVARCHAR(31),
+  [IsAdmin]     BIT
+)
+GO
+
 ALTER TABLE [Expedition] ADD CONSTRAINT [Expedition_FK_Peak] FOREIGN KEY ([PeakID]) REFERENCES [Peak] ([ID])
 ALTER TABLE [Expedition] ADD CONSTRAINT [Expedition_FK_TrekkingAgency] FOREIGN KEY ([TrekkingAgencyID]) REFERENCES [TrekkingAgency] ([ID])
+ALTER TABLE [Expedition] ADD CONSTRAINT [Expedition_FK_Login] FOREIGN KEY ([LoginID]) REFERENCES [Login] ([ID])
 GO
