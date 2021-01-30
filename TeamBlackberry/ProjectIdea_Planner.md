@@ -1,1 +1,0 @@
-For this project, we would like to utilize a database and various APIs from google maps and some food based APIs to allow a user to save events throughout a day and the application will both store their plans and give them relevant information about their schedule such as directions and nutrition information of any meals they plan.
