@@ -28,7 +28,7 @@ the site and the features currently available</td>
             <td></td>
         </tr>
         <tr>
-            <td>3</td> <td>Started</td> <td>U</td> <td>-</td> <td>Hayden</td>
+            <td>3</td> <td>Completed</td> <td>U</td> <td>-</td> <td>Hayden</td>
             <td>As a visitor to the site, I want to search for information about expeditions within a specified time span, so that I can look for interesting trends in data.</td>
             <td>This will be a new page that will let the user input two things, a starting date/time and an endint date/time, and will show all expiditions in a table within that timeframe.</td>
             <td></td>
