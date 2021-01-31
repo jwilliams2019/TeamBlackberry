@@ -15,20 +15,20 @@ We will be using <a href="https://pivotaltracker.com">Pivotal Tracker</a> to mak
     </thead>
     <tbody>
         <tr>
-            <td>1</td> <td>Started</td> <td>U</td> <td>-</td> <td>Jonathan</td>
+            <td>1</td> <td>Started</td>2<td>U</td> <td>-</td> <td>Jonathan</td>
             <td>As a visitor to the site I would like to see a fantastic and modern homepage that introduces me to
 the site and the features currently available</td>
             <td>This is the initial setup story and will create a homepage for the coming project.  There aren't any features yet so this will create a welcome page and will remove all boilerplate that isn't needed.</td>
             <td></td>
         </tr>
         <tr>
-            <td>2</td> <td>Started</td> <td>U</td> <td>-</td> <td>Ryan</td>
+            <td>2</td> <td>Started</td>2<td>U</td> <td>-</td> <td>Ryan</td>
             <td>As a visitor to the site, I want to be able to search for information about expeditions on a specified peak within a specified time span, so that I can learn about the specified peak.</td>
             <td>This will be a new page that will let you choose a specific peak from the database, input two dates, and search for expiditions that fill those requirements.</td>
             <td></td>
         </tr>
         <tr>
-            <td>3</td> <td>Completed</td> <td>U</td> <td>-</td> <td>Hayden</td>
+            <td>3</td> <td>Completed</td>1<td>U</td> <td>-</td> <td>Hayden</td>
             <td>As a visitor to the site, I want to search for information about expeditions within a specified time span, so that I can look for interesting trends in data.</td>
             <td>This will be a new page that will let the user input two things, a starting date/time and an endint date/time, and will show all expiditions in a table within that timeframe.</td>
             <td></td>
