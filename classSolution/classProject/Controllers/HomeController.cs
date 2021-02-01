@@ -33,13 +33,10 @@ namespace classProject.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult US3Submit(DateTime input1, DateTime input2)
         {
-
-            //var date1test = DateTime.Parse(test1);
-            //Console.WriteLine(input1);
             if (ModelState.IsValid)
             {
                 int result = DateTime.Compare(input1, input2);
-                if (result < 0)
+                if (result > 0)
                 {
                     return View("US3");
                 }
