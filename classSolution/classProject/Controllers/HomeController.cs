@@ -21,7 +21,8 @@ namespace classProject.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            int peaknum = _context.Peaks.Count();
+            return View("Index", peaknum);
         }
 
         public IActionResult Privacy()
