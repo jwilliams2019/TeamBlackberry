@@ -8598,11 +8598,25 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
+    "C:\\Users\\rmap4\\.nuget\\packages\\": {}
+=======
     "C:\\Users\\jaws9\\.nuget\\packages\\": {}
+>>>>>>> dev
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
+      "projectUniqueName": "C:\\Users\\rmap4\\TeamBlackberry\\classSolution\\classProject\\classProject.csproj",
+      "projectName": "classProject",
+      "projectPath": "C:\\Users\\rmap4\\TeamBlackberry\\classSolution\\classProject\\classProject.csproj",
+      "packagesPath": "C:\\Users\\rmap4\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\rmap4\\TeamBlackberry\\classSolution\\classProject\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\rmap4\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
       "projectUniqueName": "C:\\Users\\jaws9\\Desktop\\HW\\TeamBlackberry\\classSolution\\classProject\\classProject.csproj",
       "projectName": "classProject",
       "projectPath": "C:\\Users\\jaws9\\Desktop\\HW\\TeamBlackberry\\classSolution\\classProject\\classProject.csproj",
@@ -8611,6 +8625,7 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\jaws9\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> dev
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
