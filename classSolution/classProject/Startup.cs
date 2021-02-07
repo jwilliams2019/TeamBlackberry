@@ -27,7 +27,8 @@ namespace classProject
             services.AddControllersWithViews();
             services.AddDbContext<HimalayanDbContext>(opts =>
             {
-                opts.UseSqlServer(Configuration["ConnectionStrings:HimalayanConnectionString"]);
+                //opts.UseSqlServer(Configuration["ConnectionStrings:HimalayanConnectionString"]);
+                opts.UseSqlServer(Configuration.GetConnectionString("HimalayanConnectionAzure"));
             });
         }
 
