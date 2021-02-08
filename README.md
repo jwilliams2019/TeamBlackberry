@@ -1,4 +1,2 @@
 # Team Blackberry
-Our class (dummy) project document is in the MS2 folder.
-
-Our team project summaries are in the TeamBlackberry folder.
+This README will be updated when the project is chosen and work on it has begun.

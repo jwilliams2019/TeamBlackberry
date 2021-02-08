@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using classProject.Models;
 using Microsoft.EntityFrameworkCore;
@@ -21,7 +22,8 @@ namespace classProject.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            int peaknum = _context.Peaks.Count();
+            return View("Index", peaknum);
         }
 
         public IActionResult Privacy()
@@ -31,15 +33,38 @@ namespace classProject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        public IActionResult US2Submit(String peak, DateTime start, DateTime end)
+        {
+            if (ModelState.IsValid)
+            {
+                int result = DateTime.Compare(start, end);
+                if (result > 0 || peak is null)
+                {
+                    return View("US2");
+                }
+
+                IEnumerable<Expedition> results = _context.Expeditions
+                                                    .Include(e => e.Peak)
+                                                    .Include(d => d.TrekkingAgency)
+                                                    .Where(x => x.Peak.Name == peak && x.StartDate >= start && x.StartDate < end);
+                return View("US2", results);
+            }
+            return View("US2");
+        }
+
+        public IActionResult US2()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult US3Submit(DateTime input1, DateTime input2)
         {
-
-            //var date1test = DateTime.Parse(test1);
-            //Console.WriteLine(input1);
             if (ModelState.IsValid)
             {
                 int result = DateTime.Compare(input1, input2);
-                if (result < 0)
+                if (result > 0)
                 {
                     return View("US3");
                 }

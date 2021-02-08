@@ -1,8 +1,22 @@
-﻿@{
+﻿@model int
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1>Welcome to our Himalayan Database!</h1>
+    <label>
+        <img class="mountains" src="~/jpg/Himalayan.jpg" alt="Himalayan Mountains from airplane" width=100% height=auto>
+        <p class=source><a href="https://en.wikipedia.org/wiki/Himalayas">Source</a></p>
+    </label>
+    
+</div>
+
+
+<div>
+    <p>We have a couple features to try out in the navbar above! <br>
+    Learn about expeditions! <br>
+    Information on @Model different peaks!
+    </p>
 </div>
