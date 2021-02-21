@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
-namespace BerryProject.Models
+#nullable disable
+
+namespace BerylCalendar.Models
 {
+    [Table("Event")]
     public partial class Event
     {
         [Key]
@@ -24,10 +28,10 @@ namespace BerryProject.Models
         public string Location { get; set; }
 
         [ForeignKey(nameof(AccountId))]
-        [InverseProperty("Event")]
+        [InverseProperty("Events")]
         public virtual Account Account { get; set; }
         [ForeignKey(nameof(TypeId))]
-        [InverseProperty("Event")]
+        [InverseProperty("Events")]
         public virtual Type Type { get; set; }
     }
 }

@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
-namespace BerryProject.Models
+#nullable disable
+
+namespace BerylCalendar.Models
 {
+    [Table("Type")]
     public partial class Type
     {
         public Type()
         {
-            Event = new HashSet<Event>();
+            Events = new HashSet<Event>();
         }
 
         [Key]
@@ -18,7 +22,7 @@ namespace BerryProject.Models
         [StringLength(15)]
         public string Name { get; set; }
 
-        [InverseProperty("Type")]
-        public virtual ICollection<Event> Event { get; set; }
+        [InverseProperty(nameof(Event.Type))]
+        public virtual ICollection<Event> Events { get; set; }
     }
 }
