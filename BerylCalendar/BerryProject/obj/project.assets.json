@@ -8864,19 +8864,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jaws9\\.nuget\\packages\\": {}
+    "C:\\Users\\rmap4\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jaws9\\Desktop\\HW\\TeamBlackberry\\BerylCalendar\\BerryProject\\BerryProject.csproj",
+      "projectUniqueName": "C:\\Users\\rmap4\\TeamBlackberry\\BerylCalendar\\BerryProject\\BerryProject.csproj",
       "projectName": "BerryProject",
-      "projectPath": "C:\\Users\\jaws9\\Desktop\\HW\\TeamBlackberry\\BerylCalendar\\BerryProject\\BerryProject.csproj",
-      "packagesPath": "C:\\Users\\jaws9\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jaws9\\Desktop\\HW\\TeamBlackberry\\BerylCalendar\\BerryProject\\obj\\",
+      "projectPath": "C:\\Users\\rmap4\\TeamBlackberry\\BerylCalendar\\BerryProject\\BerryProject.csproj",
+      "packagesPath": "C:\\Users\\rmap4\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\rmap4\\TeamBlackberry\\BerylCalendar\\BerryProject\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\jaws9\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\rmap4\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8888,6 +8888,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -8899,6 +8900,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Font.Awesome": {
             "target": "Package",
