@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\voice\\Desktop\\Team Blackberry\\TeamBlackberry\\Beryl\\BerylCalendar\\BerylCalendar\\BerylCalendar.csproj": {}
+    "C:\\Users\\rmap4\\TeamBlackberry\\Beryl\\BerylCalendar\\BerylCalendar\\BerylCalendar.csproj": {}
   },
   "projects": {
-    "C:\\Users\\voice\\Desktop\\Team Blackberry\\TeamBlackberry\\Beryl\\BerylCalendar\\BerylCalendar\\BerylCalendar.csproj": {
+    "C:\\Users\\rmap4\\TeamBlackberry\\Beryl\\BerylCalendar\\BerylCalendar\\BerylCalendar.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\voice\\Desktop\\Team Blackberry\\TeamBlackberry\\Beryl\\BerylCalendar\\BerylCalendar\\BerylCalendar.csproj",
+        "projectUniqueName": "C:\\Users\\rmap4\\TeamBlackberry\\Beryl\\BerylCalendar\\BerylCalendar\\BerylCalendar.csproj",
         "projectName": "BerylCalendar",
-        "projectPath": "C:\\Users\\voice\\Desktop\\Team Blackberry\\TeamBlackberry\\Beryl\\BerylCalendar\\BerylCalendar\\BerylCalendar.csproj",
-        "packagesPath": "C:\\Users\\voice\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\voice\\Desktop\\Team Blackberry\\TeamBlackberry\\Beryl\\BerylCalendar\\BerylCalendar\\obj\\",
+        "projectPath": "C:\\Users\\rmap4\\TeamBlackberry\\Beryl\\BerylCalendar\\BerylCalendar\\BerylCalendar.csproj",
+        "packagesPath": "C:\\Users\\rmap4\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\rmap4\\TeamBlackberry\\Beryl\\BerylCalendar\\BerylCalendar\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\voice\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\rmap4\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
