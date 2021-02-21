@@ -2,22 +2,24 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace BerryProject.Models
+#nullable disable
+
+namespace BerylCalendar.Models
 {
-    public partial class BerylDBContext : DbContext
+    public partial class BerylDbContext : DbContext
     {
-        public BerylDBContext()
+        public BerylDbContext()
         {
         }
 
-        public BerylDBContext(DbContextOptions<BerylDBContext> options)
+        public BerylDbContext(DbContextOptions<BerylDbContext> options)
             : base(options)
         {
         }
 
-        public virtual DbSet<Account> Account { get; set; }
-        public virtual DbSet<Event> Event { get; set; }
-        public virtual DbSet<Type> Type { get; set; }
+        public virtual DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<Event> Events { get; set; }
+        public virtual DbSet<Type> Types { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -29,18 +31,18 @@ namespace BerryProject.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
+
             modelBuilder.Entity<Event>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
-                
                 entity.HasOne(d => d.Account)
-                    .WithMany(p => p.Event)
+                    .WithMany(p => p.Events)
                     .HasForeignKey(d => d.AccountId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("Event_FK_Account");
 
                 entity.HasOne(d => d.Type)
-                    .WithMany(p => p.Event)
+                    .WithMany(p => p.Events)
                     .HasForeignKey(d => d.TypeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("Event_FK_Type");
