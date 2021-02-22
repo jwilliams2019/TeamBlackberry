@@ -12,12 +12,11 @@ namespace BerylCalendar.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private BerylDbContext db;
+        //private BerylDbContext db;
 
-        public HomeController(BerylDbContext db)
+        public HomeController() //BerylDbContext db)
         {
-            this.db = db;
+            //this.db = db;
         }
 
         public IActionResult Index()
