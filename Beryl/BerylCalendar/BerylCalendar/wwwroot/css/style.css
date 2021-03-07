@@ -1,0 +1,26 @@
+.logo {
+    margin-top:175px;
+    margin-right:-50px;
+    margin-left:400px;
+}
+
+#blurb {
+    display:inline-block;
+    vertical-align:bottom;
+}
+
+#text {
+    line-height:20px;
+    margin-bottom:0px;
+}
+
+#logo {
+    display:inline-block;
+    vertical-align:bottom;
+    max-width:200px;
+}
+
+.acc_creat {
+    max-width:250px;
+    margin-top:75px;
+}

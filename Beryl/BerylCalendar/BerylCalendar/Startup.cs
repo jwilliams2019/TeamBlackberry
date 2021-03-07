@@ -12,6 +12,7 @@ using BerylCalendar.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using BerylCalendar.Models;
 
 namespace BerylCalendar
 {
@@ -30,6 +31,11 @@ namespace BerylCalendar
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDatabaseDeveloperPageExceptionFilter();
+
+            services.AddDbContext<BerylDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("BerylConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
