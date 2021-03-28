@@ -10,5 +10,6 @@ namespace BerylCalendar.Models
     {
         public Event eve { get; set; }
         public bool authorized { get; set; }
+        public string name { get; set; }
     }
 }

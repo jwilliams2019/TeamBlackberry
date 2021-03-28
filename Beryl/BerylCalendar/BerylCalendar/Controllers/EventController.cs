@@ -23,16 +23,32 @@ namespace BerylCalendar.Controllers
             this.userManager = userManager;
         } 
 
+        [HttpGet]
         [Authorize]
         public IActionResult CreateEvent() {
             return View();
+        } 
+        
+        public IActionResult Index() {
+            return View("Index", userManager.GetUserId(User));
         }
 
-        public IActionResult AddEvent(CreateEvent ev){
-            ev.eve.Id = Int32.Parse(userManager.GetUserId(User));
-            db.Events.Add(ev.eve);
-            db.SaveChanges();
-            return View("/Home/HomePage");
+        [HttpPost]
+        [Authorize]
+        public IActionResult AddEvent(CreateEvent ev){ 
+            // try{
+            //     ev.eve.AccountId = db.Accounts.Where(e => e.Username == userManager.GetUserName(User)).Select(e => e.Id).ToArray()[0];
+            // } catch (IndexOutOfRangeException e) {
+            //     return RedirectToAction("Index");
+            // }
+            if (ModelState.IsValid){
+                ev.eve.TypeId = Int32.Parse(ev.name);
+                ev.eve.AccountId = db.Accounts.Where(e => e.Username == userManager.GetUserName(User)).Select(e => e.Id).ToArray()[0];
+                db.Events.Add(ev.eve);
+                db.SaveChanges();
+                return View("Index");
+            }
+            return RedirectToAction("CreateEvent");
         }
     }
 }
