@@ -9,7 +9,8 @@ namespace BerylCalendar.Models
         public partial class CreateEvent
     {
         public Event eve { get; set; }
-        public bool authorized { get; set; }
         public string name { get; set; }
+        public DateTime startTime { get; set; }
+        public DateTime endTime { get; set; }
     }
 }

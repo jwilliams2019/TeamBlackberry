@@ -21,9 +21,9 @@ namespace BerylCalendar.Models
         [StringLength(63)]
         public string Title { get; set; }
         [Column(TypeName = "datetime")]
-        public DateTime StartTime { get; set; }
+        public DateTime StartDateTime { get; set; }
         [Column(TypeName = "datetime")]
-        public DateTime EndTime { get; set; }
+        public DateTime EndDateTime { get; set; }
         [StringLength(127)]
         public string Location { get; set; }
 

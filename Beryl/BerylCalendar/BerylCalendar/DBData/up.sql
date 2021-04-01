@@ -3,15 +3,13 @@
 USE [BerylDB];
 
 CREATE TABLE [Event] (
-    [ID]        INT PRIMARY KEY IDENTITY(1,1),
-    [TypeID]    INT NOT NULL,
-    [AccountID] INT NOT NULL,
-    [Title]     NVARCHAR(63),
-    [StartDate] DATETIME NOT NULL,
-    [StartTime] DATETIME NOT NULL,
-    [EndDate] DATETIME NOT NULL,
-    [EndTime]   DATETIME NOT NULL,
-    [Location]  NVARCHAR(127)
+    [ID]            INT PRIMARY KEY IDENTITY(1,1),
+    [TypeID]        INT NOT NULL,
+    [AccountID]     INT NOT NULL,
+    [Title]         NVARCHAR(63),
+    [StartDateTime] DATETIME NOT NULL,
+    [EndDateTime]   DATETIME NOT NULL,
+    [Location]      NVARCHAR(127)
 );
 
 CREATE TABLE [Account] (

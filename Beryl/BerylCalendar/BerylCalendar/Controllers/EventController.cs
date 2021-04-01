@@ -36,17 +36,14 @@ namespace BerylCalendar.Controllers
         [HttpPost]
         [Authorize]
         public IActionResult AddEvent(CreateEvent ev){ 
-            // try{
-            //     ev.eve.AccountId = db.Accounts.Where(e => e.Username == userManager.GetUserName(User)).Select(e => e.Id).ToArray()[0];
-            // } catch (IndexOutOfRangeException e) {
-            //     return RedirectToAction("Index");
-            // }
             if (ModelState.IsValid){
                 ev.eve.TypeId = Int32.Parse(ev.name);
                 ev.eve.AccountId = db.Accounts.Where(e => e.Username == userManager.GetUserName(User)).Select(e => e.Id).ToArray()[0];
+                ev.eve.StartDateTime = ev.eve.StartDateTime.Date.Add(ev.startTime.TimeOfDay);
+                ev.eve.EndDateTime = ev.eve.EndDateTime.Date.Add(ev.endTime.TimeOfDay);
                 db.Events.Add(ev.eve);
                 db.SaveChanges();
-                return View("Index");
+                return View("EventCreateSuccess");
             }
             return RedirectToAction("CreateEvent");
         }

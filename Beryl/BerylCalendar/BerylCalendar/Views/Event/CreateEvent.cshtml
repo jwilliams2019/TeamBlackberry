@@ -13,17 +13,34 @@
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-                            <label asp-for="@Model.eve.StartTime">When will it start?:</label>
-                            <input asp-for="@Model.eve.StartTime" type="DateTime-local" class="form-control"/>
-                            <span asp-validation-for="@Model.eve.StartTime" class="text-danger"></span>
-
+                            <label asp-for="@Model.eve.StartDateTime">Which date will the event start?:</label>
+                            <input asp-for="@Model.eve.StartDateTime" type="Date" class="form-control"/>
+                            <span asp-validation-for="@Model.eve.StartDateTime" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label asp-for="@Model.startTime">What time will the event start?:</label>
+                            <input asp-for="@Model.startTime" type="Time" class="form-control"/>
+                            <span asp-validation-for="@Model.startTime" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="@Model.eve.EndTime">When will it end?:</label>
-                    <input asp-for="@Model.eve.EndTime" type="DateTime-local" class="form-control"/>
-                    <span asp-validation-for="@Model.eve.EndTime" class="text-danger"></span>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label asp-for="@Model.eve.EndDateTime">Which date will the event end?:</label>
+                            <input asp-for="@Model.eve.EndDateTime" type="Date" class="form-control"/>
+                            <span asp-validation-for="@Model.eve.EndDateTime" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label asp-for="@Model.endTime">What time will the event end?:</label>
+                            <input asp-for="@Model.endTime" type="Time" class="form-control"/>
+                            <span asp-validation-for="@Model.endTime" class="text-danger"></span>
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label asp-for="@Model.eve.Location">Where is it located?:</label>
