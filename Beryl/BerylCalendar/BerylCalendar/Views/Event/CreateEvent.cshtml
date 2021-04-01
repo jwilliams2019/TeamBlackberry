@@ -1,0 +1,63 @@
+@model CreateEvent
+<body style="background-color:lightgrey">
+    <div style="text-align:center;width:90%" class="box-shadow-login boxbgcolor">
+        <h1>Create an Event:</h1>
+
+        <div>
+            <form asp-action="AddEvent" method="post">
+                <div class="form-group">
+                    <label asp-for="@Model.eve.Title">Title:</label>
+                    <input asp-for="@Model.eve.Title" type="text" class="form-control"/>
+                    <span asp-validation-for="@Model.eve.Title" class="text-danger"></span>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label asp-for="@Model.eve.StartDateTime">Which date will the event start?:</label>
+                            <input asp-for="@Model.eve.StartDateTime" type="Date" class="form-control"/>
+                            <span asp-validation-for="@Model.eve.StartDateTime" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label asp-for="@Model.startTime">What time will the event start?:</label>
+                            <input asp-for="@Model.startTime" type="Time" class="form-control"/>
+                            <span asp-validation-for="@Model.startTime" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label asp-for="@Model.eve.EndDateTime">Which date will the event end?:</label>
+                            <input asp-for="@Model.eve.EndDateTime" type="Date" class="form-control"/>
+                            <span asp-validation-for="@Model.eve.EndDateTime" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label asp-for="@Model.endTime">What time will the event end?:</label>
+                            <input asp-for="@Model.endTime" type="Time" class="form-control"/>
+                            <span asp-validation-for="@Model.endTime" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.eve.Location">Where is it located?:</label>
+                    <input asp-for="@Model.eve.Location" type="text" class="form-control"/>
+                    <span asp-validation-for="@Model.eve.Location" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.name">Event Types</label>
+                    <select asp-for="@Model.name">
+                        <option value="1">Shopping</option>
+                        <option value="2">Visit</option>
+                        <option value="3">Meal</option>
+                        <option value="4">Activity</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Create Event</button>
+            </form>
+        </div>
+    </div>
+</body>
