@@ -9,7 +9,8 @@ CREATE TABLE [Event] (
     [Title]         NVARCHAR(63),
     [StartDateTime] DATETIME NOT NULL,
     [EndDateTime]   DATETIME NOT NULL,
-    [Location]      NVARCHAR(127)
+    [Location]      NVARCHAR(63),
+    [Details]       NVARCHAR(255)
 );
 
 CREATE TABLE [Account] (

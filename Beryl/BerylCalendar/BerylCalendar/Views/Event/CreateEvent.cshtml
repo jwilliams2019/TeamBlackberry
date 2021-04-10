@@ -1,5 +1,5 @@
-@model CreateEvent
-<body style="background-color:lightgrey">
+@model CrudEvent
+<body style="background-color:lightgrey" onload="CreateError(@Model.errorNum)">
     <div style="text-align:center;width:90%" class="box-shadow-login boxbgcolor">
         <h1>Create an Event:</h1>
 
@@ -13,14 +13,14 @@
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-                            <label asp-for="@Model.eve.StartDateTime">Which date will the event start?:</label>
+                            <label asp-for="@Model.eve.StartDateTime">Event Starting Date:</label>
                             <input asp-for="@Model.eve.StartDateTime" type="Date" class="form-control"/>
                             <span asp-validation-for="@Model.eve.StartDateTime" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
-                            <label asp-for="@Model.startTime">What time will the event start?:</label>
+                            <label asp-for="@Model.startTime">Event Starting Time:</label>
                             <input asp-for="@Model.startTime" type="Time" class="form-control"/>
                             <span asp-validation-for="@Model.startTime" class="text-danger"></span>
                         </div>
@@ -29,31 +29,35 @@
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-                            <label asp-for="@Model.eve.EndDateTime">Which date will the event end?:</label>
+                            <label asp-for="@Model.eve.EndDateTime">Event Ending Date:</label>
                             <input asp-for="@Model.eve.EndDateTime" type="Date" class="form-control"/>
                             <span asp-validation-for="@Model.eve.EndDateTime" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
-                            <label asp-for="@Model.endTime">What time will the event end?:</label>
+                            <label asp-for="@Model.endTime">Event Ending Time:</label>
                             <input asp-for="@Model.endTime" type="Time" class="form-control"/>
                             <span asp-validation-for="@Model.endTime" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label asp-for="@Model.eve.Location">Where is it located?:</label>
+                    <label asp-for="@Model.eve.Location">Event Location:</label>
                     <input asp-for="@Model.eve.Location" type="text" class="form-control"/>
                     <span asp-validation-for="@Model.eve.Location" class="text-danger"></span>
                 </div>
                 <div class="form-group">
+                    <label asp-for="@Model.eve.Details">Event Details:</label>
+                    <input asp-for="@Model.eve.Details" type="text" class="form-control"/>
+                    <span asp-validation-for="@Model.eve.Details" class="text-danger"></span>
+                </div>
+                <div class="form-group">
                     <label asp-for="@Model.name">Event Types</label>
                     <select asp-for="@Model.name">
-                        <option value="1">Shopping</option>
-                        <option value="2">Visit</option>
-                        <option value="3">Meal</option>
-                        <option value="4">Activity</option>
+                        @for (int i=1; i < Model.types.Length+1; i++){
+                            <option value="@i">@Model.types[i-1]</option>
+                        }
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Create Event</button>
