@@ -26,26 +26,42 @@ namespace BerylCalendar.Controllers
         [HttpGet]
         [Authorize]
         public IActionResult CreateEvent() {
-            return View();
+            CrudEvent crud = new CrudEvent();
+            crud.errorNum = 0;
+            crud.types = db.Types.Select(e => e.Name).ToArray();
+            return View("CreateEvent", crud);
         } 
-        
-        public IActionResult Index() {
-            return View("Index", userManager.GetUserId(User));
-        }
+
+        [HttpGet]
+        [Authorize]
+        public IActionResult CreateEventError(int i) {
+            CrudEvent crud = new CrudEvent();
+            crud.errorNum = i;
+            crud.types = db.Types.Select(e => e.Name).ToArray();
+            return View("CreateEvent", crud);
+        } 
 
         [HttpPost]
         [Authorize]
-        public IActionResult AddEvent(CreateEvent ev){ 
+        public IActionResult AddEvent(CrudEvent ev){ 
             if (ModelState.IsValid){
                 ev.eve.TypeId = Int32.Parse(ev.name);
                 ev.eve.AccountId = db.Accounts.Where(e => e.Username == userManager.GetUserName(User)).Select(e => e.Id).ToArray()[0];
-                ev.eve.StartDateTime = ev.eve.StartDateTime.Date.Add(ev.startTime.TimeOfDay);
-                ev.eve.EndDateTime = ev.eve.EndDateTime.Date.Add(ev.endTime.TimeOfDay);
+                ev.eve.StartDateTime = CombineDateTime(ev.eve.StartDateTime, ev.startTime);
+                ev.eve.EndDateTime = CombineDateTime(ev.eve.EndDateTime, ev.endTime);
+                // if (ev.eve.StartDateTime.CompareTo(ev.eve.StartDateTime) =! -1){
+                //     return RedirectToAction("CreateEventError", 2);
+                // }
                 db.Events.Add(ev.eve);
                 db.SaveChanges();
                 return View("EventCreateSuccess");
             }
-            return RedirectToAction("CreateEvent");
+            return RedirectToAction("CreateEventError", 1);
+        }
+
+        public DateTime CombineDateTime(DateTime date, DateTime time){
+            date.Date.Add(time.TimeOfDay);
+            return date;
         }
     }
 }
