@@ -60,8 +60,20 @@ namespace BerylCalendar.Controllers
         }
 
         public DateTime CombineDateTime(DateTime date, DateTime time){
-            date.Date.Add(time.TimeOfDay);
+            date = date.Date.Add(time.TimeOfDay);
             return date;
         }
+
+
+        public IActionResult UpdateEvent(){
+            CrudEvent crud = new CrudEvent();
+            crud.errorNum = 0;
+            crud.types = db.Types.Select(e => e.Name).ToArray();
+            return View("UpdateEvent", crud);
+        }
+
+        // public IActionResult UpdateEvent(int i){
+
+        // }
     }
 }
