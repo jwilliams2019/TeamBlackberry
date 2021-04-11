@@ -43,8 +43,8 @@ namespace BerylCalendar.Controllers
         public IActionResult SeeDetailedEvents(int? id)
         {
             var events = db.Events.Where(c => c.Id == id).Include(d => d.Type);
-            var test = db.Events.Where(e => e.Id == id).Select(e => e.Id).ToArray()[0];
-            if (test != id)
+            var idNumber = db.Events.Where(e => e.Id == id).Select(e => e.Id).ToArray()[0];
+            if (idNumber != id)
             {
                 return View("index");
             }
