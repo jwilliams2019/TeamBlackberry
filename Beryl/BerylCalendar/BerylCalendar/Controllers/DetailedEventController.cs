@@ -42,7 +42,12 @@ namespace BerylCalendar.Controllers
         [HttpGet]
         public IActionResult SeeDetailedEvents(int? id)
         {
-            var events = db.Events.Where(c => c.Id == id);
+            var events = db.Events.Where(c => c.Id == id).Include(d => d.Type);
+            var test = db.Events.Where(e => e.Id == id).Select(e => e.Id).ToArray()[0];
+            if (test != id)
+            {
+                return View("index");
+            }
             return View(events);
         }
     }
