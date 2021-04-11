@@ -1,0 +1,14 @@
+@model IEnumerable<BerylCalendar.Models.Event>
+<body style="background-color:lightgrey">
+    <div style="text-align:center;width:90%" class="box-shadow-login boxbgcolor">
+        
+        @foreach (var i in Model)
+        {
+            @i.Title <br />
+            @i.StartDateTime <br />
+            @i.EndDateTime <br />
+        }
+        
+        @*<span>yo</span>*@
+    </div>
+</body>

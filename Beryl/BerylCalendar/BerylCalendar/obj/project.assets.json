@@ -7605,19 +7605,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jaws9\\.nuget\\packages\\": {}
+    "C:\\Users\\voice\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jaws9\\Desktop\\HW\\TeamBlackberry\\Beryl\\BerylCalendar\\BerylCalendar\\BerylCalendar.csproj",
+      "projectUniqueName": "C:\\Users\\voice\\Desktop\\Team Blackberry\\TeamBlackberry\\Beryl\\BerylCalendar\\BerylCalendar\\BerylCalendar.csproj",
       "projectName": "BerylCalendar",
-      "projectPath": "C:\\Users\\jaws9\\Desktop\\HW\\TeamBlackberry\\Beryl\\BerylCalendar\\BerylCalendar\\BerylCalendar.csproj",
-      "packagesPath": "C:\\Users\\jaws9\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jaws9\\Desktop\\HW\\TeamBlackberry\\Beryl\\BerylCalendar\\BerylCalendar\\obj\\",
+      "projectPath": "C:\\Users\\voice\\Desktop\\Team Blackberry\\TeamBlackberry\\Beryl\\BerylCalendar\\BerylCalendar\\BerylCalendar.csproj",
+      "packagesPath": "C:\\Users\\voice\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\voice\\Desktop\\Team Blackberry\\TeamBlackberry\\Beryl\\BerylCalendar\\BerylCalendar\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\jaws9\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\voice\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
