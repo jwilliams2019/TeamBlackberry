@@ -9,6 +9,7 @@ using BerylCalendar.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using BerylCalendar.Utilities;
 
 namespace BerylCalendar.Controllers
 {
@@ -47,8 +48,8 @@ namespace BerylCalendar.Controllers
             if (ModelState.IsValid){
                 ev.eve.TypeId = Int32.Parse(ev.name);
                 ev.eve.AccountId = db.Accounts.Where(e => e.Username == userManager.GetUserName(User)).Select(e => e.Id).ToArray()[0];
-                ev.eve.StartDateTime = CombineDateTime(ev.eve.StartDateTime, ev.startTime);
-                ev.eve.EndDateTime = CombineDateTime(ev.eve.EndDateTime, ev.endTime);
+                ev.eve.StartDateTime = DateTimeUtilities.CombineDateTime(ev.eve.StartDateTime, ev.startTime);
+                ev.eve.EndDateTime = DateTimeUtilities.CombineDateTime(ev.eve.EndDateTime, ev.endTime);
                 // if (ev.eve.StartDateTime.CompareTo(ev.eve.StartDateTime) =! -1){
                 //     return RedirectToAction("CreateEventError", 2);
                 // }
@@ -57,11 +58,6 @@ namespace BerylCalendar.Controllers
                 return View("EventCreateSuccess");
             }
             return RedirectToAction("CreateEventError", 1);
-        }
-
-        public DateTime CombineDateTime(DateTime date, DateTime time){
-            date.Date.Add(time.TimeOfDay);
-            return date;
         }
     }
 }
