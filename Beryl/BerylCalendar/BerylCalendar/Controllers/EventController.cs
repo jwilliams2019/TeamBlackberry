@@ -59,5 +59,17 @@ namespace BerylCalendar.Controllers
             }
             return RedirectToAction("CreateEventError", 1);
         }
+
+        [Authorize]
+        public async Task<IActionResult> HomePage()
+        {
+            var events = await db.Events.Include(x => x.Account).Where(e => e.Account.Username == userManager.GetUserName(User)).OrderBy(y => y.StartDateTime).ToListAsync();
+            return View(events);
+        }
+
+        public DateTime CombineDateTime(DateTime date, DateTime time){
+            date.Date.Add(time.TimeOfDay);
+            return date;
+        }
     }
 }

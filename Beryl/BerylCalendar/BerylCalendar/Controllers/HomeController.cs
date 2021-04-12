@@ -7,16 +7,20 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using BerylCalendar.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BerylCalendar.Controllers
 {
     public class HomeController : Controller
     {
         private BerylDbContext db;
+        private readonly UserManager<IdentityUser> userManager;
 
-        public HomeController(BerylDbContext db)
+        public HomeController(BerylDbContext db, UserManager<IdentityUser> userManager)
         {
             this.db = db;
+            this.userManager = userManager;
         }
 
         public IActionResult Index()
