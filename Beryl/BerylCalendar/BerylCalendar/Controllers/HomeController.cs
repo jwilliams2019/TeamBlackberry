@@ -28,13 +28,6 @@ namespace BerylCalendar.Controllers
             return View();
         }
 
-        [Authorize]
-        public async Task<IActionResult> HomePage()
-        {
-            var events = await db.Events.Include(x => x.Account).Where(e => e.Account.Username == userManager.GetUserName(User)).OrderBy(y => y.StartDateTime).ToListAsync();
-            return View(events);
-        }
-
         public IActionResult Privacy()
         {
             return View();
