@@ -8,16 +8,22 @@
     <div class="row">
         <div class="col-md-8">
             <div class="list-group">
-                @foreach (var item in Model)
-                { 
-                    <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">@Html.DisplayFor(modelItem => item.Title)</h5>
-                            <small>@Html.DisplayFor(modelItem => item.StartTime)</small>
-                        </div>
-                        <p class="mb-1">@Html.DisplayFor(modelItem => item.Location)</p>
-                        <small>@Html.DisplayFor(modelItem => item.Type)</small>
-                    </a>
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">@Html.DisplayFor(modelItem => item.Title)</h5>
+                                <small>@Html.DisplayFor(modelItem => item.StartDateTime)</small>
+                            </div>
+                            <p class="mb-1">@Html.DisplayFor(modelItem => item.Location)</p>
+                            <small>@Html.DisplayFor(modelItem => item.Type)</small>
+                        </a>
+                    }
+                }
+                else { 
+                    <p>The are no events for the current day.</p>
                 }
             </div>
         </div>

@@ -31,7 +31,7 @@ namespace BerylCalendar.Controllers
         [Authorize]
         public async Task<IActionResult> HomePage()
         {
-            var events = await db.Events.Where(x => x.Id == Int32.Parse(userManager.GetUserId(User))).OrderBy(y => y.StartTime).ToListAsync();
+            var events = await db.Events.Include(x => x.Account).Where(e => e.Account.Username == userManager.GetUserName(User)).OrderBy(y => y.StartDateTime).ToListAsync();
             return View(events);
         }
 
