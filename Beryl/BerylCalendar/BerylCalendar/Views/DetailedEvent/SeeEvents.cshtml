@@ -1,0 +1,12 @@
+@model IEnumerable<BerylCalendar.Models.Event>
+<body style="background-color:lightgrey">
+    <div style="text-align:center;width:90%" class="box-shadow-login boxbgcolor">
+        
+        @foreach (var i in Model)
+        {
+        <a href="/DetailedEvent/SeeDetailedEvents/@i.Id">@i.Title</a> <br />
+        }
+        
+        @*<span>yo</span>*@
+    </div>
+</body>
