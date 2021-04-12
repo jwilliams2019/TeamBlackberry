@@ -15,7 +15,7 @@ namespace BerylCalendar.Controllers
     public class HomeController : Controller
     {
         private BerylDbContext db;
-        private UserManager<IdentityUser> userManager;
+        private readonly UserManager<IdentityUser> userManager;
 
         public HomeController(BerylDbContext db, UserManager<IdentityUser> userManager)
         {
