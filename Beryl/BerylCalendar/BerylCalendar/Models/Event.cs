@@ -18,14 +18,19 @@ namespace BerylCalendar.Models
         public int TypeId { get; set; }
         [Column("AccountID")]
         public int AccountId { get; set; }
+        [Required]
         [StringLength(63)]
         public string Title { get; set; }
+        [Required]
         [Column(TypeName = "datetime")]
-        public DateTime StartTime { get; set; }
+        public DateTime StartDateTime { get; set; }
+        [Required]
         [Column(TypeName = "datetime")]
-        public DateTime EndTime { get; set; }
+        public DateTime EndDateTime { get; set; }
         [StringLength(127)]
         public string Location { get; set; }
+        [StringLength(255)]
+        public string Details { get; set; }
 
         [ForeignKey(nameof(AccountId))]
         [InverseProperty("Events")]
