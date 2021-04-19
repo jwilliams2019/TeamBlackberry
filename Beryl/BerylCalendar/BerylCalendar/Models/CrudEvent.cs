@@ -9,7 +9,8 @@ namespace BerylCalendar.Models
         public partial class CrudEvent
     {
         public Event eve { get; set; }
-        public string name { get; set; }
+        public string typeId { get; set; }
+        public string idString { get; set; }
         public DateTime startTime { get; set; }
         public DateTime endTime { get; set; }
         public int errorNum { get; set; }

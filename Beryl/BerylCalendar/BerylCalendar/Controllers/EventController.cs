@@ -46,7 +46,7 @@ namespace BerylCalendar.Controllers
         [Authorize]
         public IActionResult AddEvent(CrudEvent ev){ 
             if (ModelState.IsValid){
-                ev.eve.TypeId = Int32.Parse(ev.name);
+                ev.eve.TypeId = Int32.Parse(ev.typeId);
                 ev.eve.AccountId = db.Accounts.Where(e => e.Username == userManager.GetUserName(User)).Select(e => e.Id).ToArray()[0];
                 ev.eve.StartDateTime = DateTimeUtilities.CombineDateTime(ev.eve.StartDateTime, ev.startTime);
                 ev.eve.EndDateTime = DateTimeUtilities.CombineDateTime(ev.eve.EndDateTime, ev.endTime);
@@ -72,16 +72,28 @@ namespace BerylCalendar.Controllers
             return date;
         }
 
-
-        public IActionResult UpdateEvent(){
+        [HttpGet]
+        public IActionResult UpdateEvent(int id){
+            Event ev = db.Events.Find(id);
             CrudEvent crud = new CrudEvent();
             crud.errorNum = 0;
+            crud.eve = ev;
             crud.types = db.Types.Select(e => e.Name).ToArray();
-            return View("UpdateEvent", crud);
+            return View(crud);
         }
 
-        // public IActionResult UpdateEvent(int i){
-
-        // }
+        [HttpPost]
+        public IActionResult UpdateEvent(CrudEvent model){
+            if (ModelState.IsValid){
+                model.eve.TypeId = Int32.Parse(model.typeId);
+                model.eve.AccountId = db.Accounts.Where(e => e.Username == userManager.GetUserName(User)).Select(e => e.Id).ToArray()[0];
+                model.eve.StartDateTime = DateTimeUtilities.CombineDateTime(model.eve.StartDateTime, model.startTime);
+                model.eve.EndDateTime = DateTimeUtilities.CombineDateTime(model.eve.EndDateTime, model.endTime);
+                db.Update(model.eve);
+                db.SaveChanges();
+                return RedirectToAction("HomePage"); 
+            }
+            return View(model);
+        }
     }
 }

@@ -53,8 +53,8 @@
                     <span asp-validation-for="@Model.eve.Details" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="@Model.name">Event Types</label>
-                    <select asp-for="@Model.name">
+                    <label asp-for="@Model.typeId">Event Types</label>
+                    <select asp-for="@Model.typeId">
                         @for (int i=1; i < Model.types.Length+1; i++){
                             <option value="@i">@Model.types[i-1]</option>
                         }
