@@ -95,5 +95,10 @@ namespace BerylCalendar.Controllers
             }
             return View(model);
         }
+
+        [HttpGet]
+        public IActionResult DeleteEvent(int id){
+            return View(id);
+        }
     }
 }
