@@ -1,0 +1,19 @@
+-What went well in the Sprint
+Merges were much smoother than last time.
+Workflow was better, we had no major issues with dotnet or tools this time.
+Upgrading tools went smooth
+We got it working and on Azure!
+No major conflicts.
+Meeting communication was much better.
+
+-What we learned
+We learned how to use authorization in identity a bit better.
+We learned that nuget merge conflicts are often related to the user’s home computer directories.
+Starting to learn each other’s workflow patterns.
+
+-What could be improved
+Better user story preparation.
+Time management and motivation
+Trying our best to get 4 points done by week 1 if possible, preferably blockers first
+Judging how much work a particular user story will require.
+File creation is a big deal, it’s effort points for sure
