@@ -2,7 +2,17 @@
 
 <body style="background-color:lightgrey">
     <div style="text-align:center;width:90%" class="box-shadow-login boxbgcolor">
+        <br>
         <h2>Delete Event Permanently?</h2>
-
+        <br><br>
+        <div class="row">
+            <div class="col">
+                <a href="/DetailedEvent/SeeDetailedEvents/?id=@Model"><button type="submit" class="btn btn-info">Cancel</button></a>
+            </div>
+            <div class="col">
+                <a href="/Event/EraseEvent/?id=@Model"><button type="submit" class="btn btn-danger">Delete</button></a>
+            </div>
+        </div>
+        <br>
     </div>
 </body>
