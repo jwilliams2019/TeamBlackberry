@@ -33,9 +33,8 @@ namespace BerylCalendar.Controllers
             return View("CreateEvent", crud);
         } 
 
-        [HttpGet]
         [Authorize]
-        public IActionResult CreateEventError(int i) {
+        public IActionResult CreateEvent(int i) {
             CrudEvent crud = new CrudEvent();
             crud.errorNum = i;
             crud.types = db.Types.Select(e => e.Name).ToArray();
@@ -50,14 +49,14 @@ namespace BerylCalendar.Controllers
                 ev.eve.AccountId = db.Accounts.Where(e => e.Username == userManager.GetUserName(User)).Select(e => e.Id).ToArray()[0];
                 ev.eve.StartDateTime = DateTimeUtilities.CombineDateTime(ev.eve.StartDateTime, ev.startTime);
                 ev.eve.EndDateTime = DateTimeUtilities.CombineDateTime(ev.eve.EndDateTime, ev.endTime);
-                // if (ev.eve.StartDateTime.CompareTo(ev.eve.StartDateTime) =! -1){
-                //     return RedirectToAction("CreateEventError", 2);
-                // }
+                if (ev.eve.StartDateTime.CompareTo(ev.eve.EndDateTime) != -1){
+                    return RedirectToAction("CreateEvent", 2);
+                }
                 db.Events.Add(ev.eve);
                 db.SaveChanges();
                 return View("EventCreateSuccess");
             }
-            return RedirectToAction("CreateEventError", 1);
+            return RedirectToAction("CreateEvent", 1);
         }
 
         [HttpGet]
