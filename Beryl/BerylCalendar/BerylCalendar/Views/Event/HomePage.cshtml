@@ -7,6 +7,16 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
+            @using (Html.BeginForm("HomePage", "Event"))
+            {
+                <div class="input-group mb-3 ">
+                    <input type="text" name="filter" class="form-control" />
+                    <input type="submit" value="Submit" class="btn btn-primary" />
+                    <small id="searchExample" class="form-text text-muted">
+                        You may search between two different dates or an event type. Event types are: Shopping, Visit, Meal, and Activity. Example of a search between dates: 1/1/2021 5/1/2021.
+                    </small>
+                </div>
+            }
             <div class="list-group">
                 @if (Model != null)
                 {
@@ -22,14 +32,15 @@
                         </a>
                     }
                 }
-                else { 
+                else
+                {
                     <p>The are no events for the current day.</p>
                 }
             </div>
         </div>
         <div class="col-md-4">
             <div class="row">
-                
+
             </div>
             <div class="row">
 
@@ -37,3 +48,12 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    @if (ViewData["status"] != null)
+    {
+    <script language="javascript">
+        alert("You did not enter two dates or a type. Example: 1/1/2021 4/24/2021 or Shopping.");
+    </script>
+    }
+}

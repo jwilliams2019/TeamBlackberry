@@ -61,9 +61,43 @@ namespace BerylCalendar.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> HomePage()
+        public async Task<IActionResult> HomePage(string filter)
         {
             var events = await db.Events.Include(x => x.Account).Where(e => e.Account.Username == userManager.GetUserName(User)).OrderBy(y => y.StartDateTime).ToListAsync();
+            if (filter != null)
+            {
+                bool isPossiblyType = char.IsLetter(filter.FirstOrDefault());
+
+                if(isPossiblyType == true)
+                {
+                    var eventType = await db.Events.Include(x => x.Account).Where(e => e.Account.Username == userManager.GetUserName(User)).Where(a => a.Type.Name.Contains(filter)).OrderBy(y => y.StartDateTime).ToListAsync();
+                    if (eventType.Any())
+                    {
+                        return View(eventType);
+                    }
+                }
+
+                Console.WriteLine(filter);
+                DateTime startDate;
+                DateTime endDate;
+                string[] dates = filter.Split(' ');
+                if (dates.Length == 2)
+                {
+                    string stringOne = dates[0];
+                    string stringTwo = dates[1];
+
+                    if (DateTime.TryParse(stringOne, out startDate))
+                    {
+                        if (DateTime.TryParse(stringTwo, out endDate))
+                        {
+                            var events2 = await db.Events.Include(x => x.Account).Where(e => e.Account.Username == userManager.GetUserName(User)).Where(a => a.StartDateTime >= startDate && a.StartDateTime <= endDate).OrderBy(y => y.StartDateTime).ToListAsync();
+                            return View(events2);
+                        }
+                    }
+                }
+                ViewData["status"] = "1";
+                return View(events);
+            }
             return View(events);
         }
 
