@@ -60,6 +60,7 @@ namespace BerylCalendar.Controllers
             return RedirectToAction("CreateEventError", 1);
         }
 
+        [HttpGet]
         [Authorize]
         public async Task<IActionResult> HomePage()
         {
@@ -73,6 +74,7 @@ namespace BerylCalendar.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult UpdateEvent(int id){
             Event ev = db.Events.Find(id);
             CrudEvent crud = new CrudEvent();
@@ -83,9 +85,10 @@ namespace BerylCalendar.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult UpdateEvent(CrudEvent model){
             if (ModelState.IsValid){
-                model.eve.TypeId = Int32.Parse(model.typeId);
+                model.eve.TypeId =  Int32.Parse(model.typeId);
                 model.eve.AccountId = db.Accounts.Where(e => e.Username == userManager.GetUserName(User)).Select(e => e.Id).ToArray()[0];
                 model.eve.StartDateTime = DateTimeUtilities.CombineDateTime(model.eve.StartDateTime, model.startTime);
                 model.eve.EndDateTime = DateTimeUtilities.CombineDateTime(model.eve.EndDateTime, model.endTime);
@@ -94,6 +97,28 @@ namespace BerylCalendar.Controllers
                 return RedirectToAction("HomePage"); 
             }
             return View(model);
+        }
+
+        [HttpGet]
+        [Authorize]
+        public IActionResult DeleteEvent(int id){
+            if (userManager.GetUserName(User) == db.Events.Include(e => e.Account).Where(e => e.Id == id).Select(e => e.Account.Username).First()){
+                return View(id);
+            }
+            return RedirectToAction("HomePage");
+        }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> EraseEvent(int id){
+            var eve = await db.Events.Include(e => e.Account).Where(e => e.Id == id).FirstAsync();
+            if (eve != null){
+                if (userManager.GetUserName(User) == eve.Account.Username){
+                    db.Events.Remove(eve);
+                    await db.SaveChangesAsync();
+                }
+            }
+            return RedirectToAction("HomePage");
         }
     }
 }

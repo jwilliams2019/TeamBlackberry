@@ -1,14 +1,20 @@
 @model IEnumerable<BerylCalendar.Models.Event>
 <body style="background-color:lightgrey">
-    @foreach (var i in Model)
-    {
-        <p><a style=float:right;margin-right:-45px; href="/Event/UpdateEvent/?id=@i.Id">Edit</a></p>
-    }
     <div style="text-align:center;width:90%" class="box-shadow-login boxbgcolor">
         <div>
         @foreach (var i in Model)
         {
-            <span><b>Title:</b></span> <br />
+            <div class="row">
+                <div class="col">
+                    <p><a style=float:left;margin-left:1em href="/Event/DeleteEvent/@i.Id">Delete</a></p>
+                </div>
+                <div class="col">
+                    <span><b>Title:</b></span> <br />
+                </div>
+                <div class="col">
+                    <p><a style=float:right;margin-right:1em href="/Event/UpdateEvent/@i.Id">Edit</a></p>
+                </div>
+            </div>
             @i.Title <br />
             <div class="row">
                 <div class="col">
