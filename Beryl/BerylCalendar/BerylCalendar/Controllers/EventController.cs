@@ -46,7 +46,7 @@ namespace BerylCalendar.Controllers
         [Authorize]
         public IActionResult AddEvent(CrudEvent ev){ 
             if (ModelState.IsValid){
-                ev.eve.TypeId = Int32.Parse(ev.name);
+                ev.eve.TypeId = Int32.Parse(ev.typeId);
                 ev.eve.AccountId = db.Accounts.Where(e => e.Username == userManager.GetUserName(User)).Select(e => e.Id).ToArray()[0];
                 ev.eve.StartDateTime = DateTimeUtilities.CombineDateTime(ev.eve.StartDateTime, ev.startTime);
                 ev.eve.EndDateTime = DateTimeUtilities.CombineDateTime(ev.eve.EndDateTime, ev.endTime);
@@ -60,6 +60,7 @@ namespace BerylCalendar.Controllers
             return RedirectToAction("CreateEventError", 1);
         }
 
+        [HttpGet]
         [Authorize]
         public async Task<IActionResult> HomePage(string filter)
         {
@@ -101,9 +102,58 @@ namespace BerylCalendar.Controllers
             return View(events);
         }
 
-        public DateTime CombineDateTime(DateTime date, DateTime time){
-            date.Date.Add(time.TimeOfDay);
-            return date;
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> UpdateEvent(int id){
+            if (userManager.GetUserName(User) == db.Events.Include(e => e.Account).Where(e => e.Id == id).Select(e => e.Account.Username).First()){
+                var ev = await db.Events.FindAsync(id);
+                CrudEvent crud = new CrudEvent();
+                crud.errorNum = 0;
+                crud.eve = ev;
+                crud.types = await db.Types.Select(e => e.Name).ToArrayAsync();
+                return View(crud);
+            }
+            return RedirectToAction("HomePage");
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> UpdateEvent(CrudEvent model){
+            if (userManager.GetUserName(User) == db.Events.Include(e => e.Account).Where(e => e.Id == model.eve.Id).Select(e => e.Account.Username).First()){
+                if (ModelState.IsValid){
+                    model.eve.TypeId = Int32.Parse(model.typeId);
+                    model.eve.AccountId = await db.Accounts.Where(e => e.Username == userManager.GetUserName(User)).Select(e => e.Id).FirstAsync();
+                    model.eve.StartDateTime = DateTimeUtilities.CombineDateTime(model.eve.StartDateTime, model.startTime);
+                    model.eve.EndDateTime = DateTimeUtilities.CombineDateTime(model.eve.EndDateTime, model.endTime);
+                    db.Update(model.eve);
+                    await db.SaveChangesAsync();
+                    return RedirectToAction("HomePage"); 
+                }
+                return View(model);
+            }
+            return RedirectToAction("HomePage");
+        }
+
+        [HttpGet]
+        [Authorize]
+        public IActionResult DeleteEvent(int id){
+            if (userManager.GetUserName(User) == db.Events.Include(e => e.Account).Where(e => e.Id == id).Select(e => e.Account.Username).First()){
+                return View(id);
+            }
+            return RedirectToAction("HomePage");
+        }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> EraseEvent(int id){
+            var eve = await db.Events.Include(e => e.Account).Where(e => e.Id == id).FirstAsync();
+            if (eve != null){
+                if (userManager.GetUserName(User) == eve.Account.Username){
+                    db.Events.Remove(eve);
+                    await db.SaveChangesAsync();
+                }
+            }
+            return RedirectToAction("HomePage");
         }
     }
 }
