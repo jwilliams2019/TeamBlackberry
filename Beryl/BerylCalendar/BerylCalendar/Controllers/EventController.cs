@@ -68,35 +68,36 @@ namespace BerylCalendar.Controllers
             return View(events);
         }
 
-        public DateTime CombineDateTime(DateTime date, DateTime time){
-            date = date.Date.Add(time.TimeOfDay);
-            return date;
-        }
-
         [HttpGet]
         [Authorize]
-        public IActionResult UpdateEvent(int id){
-            Event ev = db.Events.Find(id);
-            CrudEvent crud = new CrudEvent();
-            crud.errorNum = 0;
-            crud.eve = ev;
-            crud.types = db.Types.Select(e => e.Name).ToArray();
-            return View(crud);
+        public async Task<IActionResult> UpdateEvent(int id){
+            if (userManager.GetUserName(User) == db.Events.Include(e => e.Account).Where(e => e.Id == id).Select(e => e.Account.Username).First()){
+                var ev = await db.Events.FindAsync(id);
+                CrudEvent crud = new CrudEvent();
+                crud.errorNum = 0;
+                crud.eve = ev;
+                crud.types = await db.Types.Select(e => e.Name).ToArrayAsync();
+                return View(crud);
+            }
+            return RedirectToAction("HomePage");
         }
 
         [HttpPost]
         [Authorize]
-        public IActionResult UpdateEvent(CrudEvent model){
-            if (ModelState.IsValid){
-                model.eve.TypeId =  Int32.Parse(model.typeId);
-                model.eve.AccountId = db.Accounts.Where(e => e.Username == userManager.GetUserName(User)).Select(e => e.Id).ToArray()[0];
-                model.eve.StartDateTime = DateTimeUtilities.CombineDateTime(model.eve.StartDateTime, model.startTime);
-                model.eve.EndDateTime = DateTimeUtilities.CombineDateTime(model.eve.EndDateTime, model.endTime);
-                db.Update(model.eve);
-                db.SaveChanges();
-                return RedirectToAction("HomePage"); 
+        public async Task<IActionResult> UpdateEvent(CrudEvent model){
+            if (userManager.GetUserName(User) == db.Events.Include(e => e.Account).Where(e => e.Id == model.eve.Id).Select(e => e.Account.Username).First()){
+                if (ModelState.IsValid){
+                    model.eve.TypeId = Int32.Parse(model.typeId);
+                    model.eve.AccountId = await db.Accounts.Where(e => e.Username == userManager.GetUserName(User)).Select(e => e.Id).FirstAsync();
+                    model.eve.StartDateTime = DateTimeUtilities.CombineDateTime(model.eve.StartDateTime, model.startTime);
+                    model.eve.EndDateTime = DateTimeUtilities.CombineDateTime(model.eve.EndDateTime, model.endTime);
+                    db.Update(model.eve);
+                    await db.SaveChangesAsync();
+                    return RedirectToAction("HomePage"); 
+                }
+                return View(model);
             }
-            return View(model);
+            return RedirectToAction("HomePage");
         }
 
         [HttpGet]
