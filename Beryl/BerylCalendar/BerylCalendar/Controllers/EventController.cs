@@ -10,11 +10,16 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using BerylCalendar.Utilities;
+using BerylCalendar.Data;
+using BerylCalendar.Data.Abstract;
+using Microsoft.AspNetCore.Http;
+
 
 namespace BerylCalendar.Controllers
 {
     public class EventController : Controller
     {
+        //private readonly IEventRepository eveRepo;
         private BerylDbContext db;
         private readonly UserManager<IdentityUser> userManager;
 
@@ -22,6 +27,7 @@ namespace BerylCalendar.Controllers
         {
             this.db = db;
             this.userManager = userManager;
+            //this.eveRepo = eveRepo;
         } 
 
         [HttpGet]
@@ -64,7 +70,10 @@ namespace BerylCalendar.Controllers
         [Authorize]
         public async Task<IActionResult> HomePage(string filter)
         {
-            var events = await db.Events.Include(x => x.Account).Where(e => e.Account.Username == userManager.GetUserName(User)).OrderBy(y => y.StartDateTime).ToListAsync();
+            Console.WriteLine("Test");
+            string userName = userManager.GetUserName(User);
+            Console.WriteLine(userName);
+            var events = await db.Events.Include(x => x.Account).Where(e => e.Account.Username == userName).OrderBy(y => y.StartDateTime).ToListAsync();
             if (filter != null)
             {
                 bool isPossiblyType = char.IsLetter(filter.FirstOrDefault());
@@ -79,19 +88,18 @@ namespace BerylCalendar.Controllers
                 }
 
                 Console.WriteLine(filter);
-                DateTime startDate;
-                DateTime endDate;
                 string[] dates = filter.Split(' ');
                 if (dates.Length == 2)
                 {
                     string stringOne = dates[0];
                     string stringTwo = dates[1];
 
-                    if (DateTime.TryParse(stringOne, out startDate))
+                    if (DateTime.TryParse(stringOne, out DateTime startDate))
                     {
-                        if (DateTime.TryParse(stringTwo, out endDate))
+                        if (DateTime.TryParse(stringTwo, out DateTime endDate))
                         {
-                            var events2 = await db.Events.Include(x => x.Account).Where(e => e.Account.Username == userManager.GetUserName(User)).Where(a => a.StartDateTime >= startDate && a.StartDateTime <= endDate).OrderBy(y => y.StartDateTime).ToListAsync();
+                            var events2 = await db.Events.Include(x => x.Account).Where(e => e.Account.Username == userName).Where(a => a.StartDateTime >= startDate && a.StartDateTime <= endDate).OrderBy(y => y.StartDateTime).ToListAsync();
+                            //var events2 = eveRepo.GetEventsByDate(filter, userName, startDate, endDate);
                             return View(events2);
                         }
                     }
