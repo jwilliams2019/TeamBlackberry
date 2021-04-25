@@ -18,6 +18,10 @@ namespace BerylCalendar.Data.Abstract
 {
     public interface IEventRepository : IRepository<Event>
     {
-        IEnumerable<Event> GetEventsByDate(string filter, string userName, DateTime startDateOne, DateTime startDateTwo);
+        Task<List<Event>> GetEventsByDate(string filter, string userName, DateTime startDateOne, DateTime startDateTwo);
+
+        Task<List<Event>> GetAllEvents(string filter, string userName);
+
+        Task<List<Event>> GetEventsByType(string filter, string userName);
     }
 }

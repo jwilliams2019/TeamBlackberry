@@ -23,9 +23,22 @@ namespace BerylCalendar.Data.Concrete
 
         }
 
-        public virtual IEnumerable<Event> GetEventsByDate(string filter, string userName, DateTime startDateOne, DateTime startDateTwo)
+        public virtual Task<List<Event>> GetEventsByDate(string filter, string userName, DateTime startDateOne, DateTime startDateTwo)
         {
-            return (IEnumerable<Event>)_dbSet.Include(x => x.Account).Where(e => e.Account.Username == userName).Where(a => a.StartDateTime >= startDateOne && a.StartDateTime <= startDateTwo).OrderBy(y => y.StartDateTime).ToListAsync();
+            var test = _dbSet.Include(x => x.Account).Where(e => e.Account.Username == userName).Where(a => a.StartDateTime >= startDateOne && a.StartDateTime <= startDateTwo).OrderBy(y => y.StartDateTime).ToListAsync();
+            return test;
+        }
+
+        public virtual Task<List<Event>> GetAllEvents(string filter, string userName)
+        {
+            var test = _dbSet.Include(x => x.Account).Where(e => e.Account.Username == userName).OrderBy(y => y.StartDateTime).ToListAsync();
+            return test;
+        }
+
+        public virtual Task<List<Event>> GetEventsByType(string filter, string userName)
+        {
+            var test = _dbSet.Include(x => x.Account).Where(e => e.Account.Username == userName).Where(a => a.Type.Name.Contains(filter)).OrderBy(y => y.StartDateTime).ToListAsync();
+            return test;
         }
     }
 }
