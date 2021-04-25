@@ -1,0 +1,53 @@
+﻿@model IEnumerable<BerylCalendar.Models.Event>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="list-group">
+                @if (Model != null)
+                {
+                    DateTime today = DateTime.Today;
+                    DateTime endOfPriorEvent = new DateTime(2020, 1, 1, 0, 0, 0);
+                    foreach (var item in Model)
+                    {
+                        if ((item.StartDateTime.Day == today.Day) && (item.StartDateTime.Month == today.Month)
+                            && (item.StartDateTime.Year == today.Year)) {
+                            if (item.StartDateTime < endOfPriorEvent) {
+                                <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">Warning</h5>
+                                    </div>
+                                    <p class="mb-1">Last event ends before next event begins. </p>
+                                </a>
+                            }
+                            <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">@Html.DisplayFor(modelItem => item.Title)</h5>
+                                    <small>@Html.DisplayFor(modelItem => item.StartDateTime)</small>
+                                </div>
+                                <p class="mb-1">@Html.DisplayFor(modelItem => item.Location)</p>
+                                <small>@Html.DisplayFor(modelItem => item.Type)</small>
+                            </a>
+                            endOfPriorEvent = item.EndDateTime;
+                        }
+                    }
+                }
+                else {
+                    <p>You have no saved events.</p>
+                }
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="row">
+                
+            </div>
+            <div class="row">
+
+            </div>
+        </div>
+    </div>
+</div>
