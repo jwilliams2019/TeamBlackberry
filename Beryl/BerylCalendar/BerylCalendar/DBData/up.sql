@@ -1,7 +1,4 @@
 -- up script
-
-USE [BerylDB];
-
 CREATE TABLE [Event] (
     [ID]            INT PRIMARY KEY IDENTITY(1,1),
     [TypeID]        INT NOT NULL,

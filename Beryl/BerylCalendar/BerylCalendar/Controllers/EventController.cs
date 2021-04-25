@@ -10,18 +10,24 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using BerylCalendar.Utilities;
+using BerylCalendar.Data;
+using BerylCalendar.Data.Abstract;
+using Microsoft.AspNetCore.Http;
+
 
 namespace BerylCalendar.Controllers
 {
     public class EventController : Controller
     {
+        private readonly IEventRepository _eveRepo;
         private BerylDbContext db;
         private readonly UserManager<IdentityUser> userManager;
 
-        public EventController(BerylDbContext db, UserManager<IdentityUser> userManager)
+        public EventController(BerylDbContext db, UserManager<IdentityUser> userManager, IEventRepository eveRepo)
         {
             this.db = db;
             this.userManager = userManager;
+            _eveRepo = eveRepo;
         } 
 
         [HttpGet]
@@ -59,11 +65,45 @@ namespace BerylCalendar.Controllers
             return RedirectToAction("CreateEvent", 1);
         }
 
-        [HttpGet]
         [Authorize]
-        public async Task<IActionResult> Display()
+        public async Task<IActionResult> Display(string filter)
         {
-            var events = await db.Events.Include(x => x.Account).Where(e => e.Account.Username == userManager.GetUserName(User)).OrderBy(y => y.StartDateTime).ToListAsync();
+            Console.WriteLine("Test");
+            string userName = userManager.GetUserName(User);
+            Console.WriteLine(userName);
+            var events = await _eveRepo.GetAllEvents(filter, userName);
+            if (filter != null)
+            {
+                bool isPossiblyType = char.IsLetter(filter.FirstOrDefault());
+
+                if(isPossiblyType == true)
+                {
+                    var eventType = await _eveRepo.GetEventsByType(filter, userName);
+                    if (eventType.Any())
+                    {
+                        return View(eventType);
+                    }
+                }
+
+                Console.WriteLine(filter);
+                string[] dates = filter.Split(' ');
+                if (dates.Length == 2)
+                {
+                    string stringOne = dates[0];
+                    string stringTwo = dates[1];
+
+                    if (DateTime.TryParse(stringOne, out DateTime startDate))
+                    {
+                        if (DateTime.TryParse(stringTwo, out DateTime endDate))
+                        {
+                            var events2 = await _eveRepo.GetEventsByDate(filter, userName, startDate, endDate);
+                            return View(events2);
+                        }
+                    }
+                }
+                ViewData["status"] = "1";
+                return View(events);
+            }
             return View(events);
         }
 
