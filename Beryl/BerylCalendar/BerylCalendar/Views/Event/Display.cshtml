@@ -7,43 +7,40 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
+            @using (Html.BeginForm("Display", "Event"))
+            {
+                <div class="input-group mb-3 ">
+                    <input type="text" name="filter" class="form-control" />
+                    <input type="submit" value="Submit" class="btn btn-primary" />
+                    <small id="searchExample" class="form-text text-muted">
+                        You may search between two different dates or an event type. Event types are: Shopping, Visit, Meal, and Activity. Example of a search between dates: 1/1/2021 5/1/2021.
+                    </small>
+                </div>
+            }
             <div class="list-group">
                 @if (Model != null)
                 {
-                    DateTime today = DateTime.Today;
-                    DateTime endOfPriorEvent = new DateTime(2020, 1, 1, 0, 0, 0);
                     foreach (var item in Model)
                     {
-                        if ((item.StartDateTime.Day == today.Day) && (item.StartDateTime.Month == today.Month)
-                            && (item.StartDateTime.Year == today.Year)) {
-                            if (item.StartDateTime < endOfPriorEvent) {
-                                <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">Warning</h5>
-                                    </div>
-                                    <p class="mb-1">Last event ends before next event begins. </p>
-                                </a>
-                            }
-                            <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">@Html.DisplayFor(modelItem => item.Title)</h5>
-                                    <small>@Html.DisplayFor(modelItem => item.StartDateTime)</small>
-                                </div>
-                                <p class="mb-1">@Html.DisplayFor(modelItem => item.Location)</p>
-                                <small>@Html.DisplayFor(modelItem => item.Type)</small>
-                            </a>
-                            endOfPriorEvent = item.EndDateTime;
-                        }
+                        <a href="/DetailedEvent/SeeDetailedEvents/@item.Id" class="list-group-item list-group-item-action" aria-current="true">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">@Html.DisplayFor(modelItem => item.Title)</h5>
+                                <small>@Html.DisplayFor(modelItem => item.StartDateTime)</small>
+                            </div>
+                            <p class="mb-1">@Html.DisplayFor(modelItem => item.Location)</p>
+                            <small>@Html.DisplayFor(modelItem => item.Type)</small>
+                        </a>
                     }
                 }
-                else {
-                    <p>You have no saved events.</p>
+                else
+                {
+                    <p>The are no events for the current day.</p>
                 }
             </div>
         </div>
         <div class="col-md-4">
             <div class="row">
-                
+
             </div>
             <div class="row">
 
@@ -51,3 +48,12 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    @if (ViewData["status"] != null)
+    {
+    <script language="javascript">
+        alert("You did not enter two dates or a type. Example: 1/1/2021 4/24/2021 or Shopping.");
+    </script>
+    }
+}
