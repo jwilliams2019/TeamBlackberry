@@ -78,7 +78,7 @@ namespace BerylCalendar.Controllers
                 crud.types = await db.Types.Select(e => e.Name).ToArrayAsync();
                 return View(crud);
             }
-            return RedirectToAction("HomePage");
+            return RedirectToAction("Display");
         }
 
         [HttpPost]
@@ -92,11 +92,11 @@ namespace BerylCalendar.Controllers
                     model.eve.EndDateTime = DateTimeUtilities.CombineDateTime(model.eve.EndDateTime, model.endTime);
                     db.Update(model.eve);
                     await db.SaveChangesAsync();
-                    return RedirectToAction("HomePage"); 
+                    return RedirectToAction("Display"); 
                 }
                 return View(model);
             }
-            return RedirectToAction("HomePage");
+            return RedirectToAction("Display");
         }
 
         [HttpGet]
@@ -105,7 +105,7 @@ namespace BerylCalendar.Controllers
             if (userManager.GetUserName(User) == db.Events.Include(e => e.Account).Where(e => e.Id == id).Select(e => e.Account.Username).First()){
                 return View(id);
             }
-            return RedirectToAction("HomePage");
+            return RedirectToAction("Display");
         }
 
         [HttpGet]
@@ -118,7 +118,7 @@ namespace BerylCalendar.Controllers
                     await db.SaveChangesAsync();
                 }
             }
-            return RedirectToAction("HomePage");
+            return RedirectToAction("Display");
         }
     }
 }
