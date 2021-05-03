@@ -1,7 +1,4 @@
 -- seed script
-
-USE [BerylDB];
-
 INSERT INTO [Type] ([Name]) VALUES
     ('Shopping'),
     ('Visit'),
