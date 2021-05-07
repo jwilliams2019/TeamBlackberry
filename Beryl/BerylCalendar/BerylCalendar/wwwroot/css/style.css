@@ -25,3 +25,25 @@
     margin-top:75px;
 }
 
+#displayOptions {
+    list-style-type: none;
+    display: none;
+    width: 200px;
+    margin: 0;
+    padding: 0;
+}
+
+#displayOptions li {
+    display: block;
+    padding: 0px 10px;
+    text-decoration: none;
+}
+
+#displayOptions li:hover {
+    background-color: #444;
+    color: white;
+} 
+
+#eventOptionToggle {
+    clear: right;
+}
