@@ -31,7 +31,7 @@ namespace BerylCalendar.Data.Concrete
 
         public virtual Task<List<Event>> GetAllEvents(string filter, string userName)
         {
-            var test = _dbSet.Include(x => x.Account).Where(e => e.Account.Username == userName).OrderBy(y => y.StartDateTime).ToListAsync();
+            var test = _dbSet.Include(x => x.Account).Include(x => x.Type).Where(e => e.Account.Username == userName).OrderBy(y => y.StartDateTime).ToListAsync();
             return test;
         }
 

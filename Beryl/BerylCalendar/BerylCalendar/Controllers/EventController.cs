@@ -68,9 +68,7 @@ namespace BerylCalendar.Controllers
         [Authorize]
         public async Task<IActionResult> Display(string filter)
         {
-            Console.WriteLine("Test");
             string userName = userManager.GetUserName(User);
-            Console.WriteLine(userName);
             var events = await _eveRepo.GetAllEvents(filter, userName);
             if (filter != null)
             {
