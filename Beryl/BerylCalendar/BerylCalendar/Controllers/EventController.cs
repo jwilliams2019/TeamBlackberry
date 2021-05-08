@@ -66,10 +66,20 @@ namespace BerylCalendar.Controllers
         }
 
         [Authorize]
+        public async Task<IActionResult> Display(int day, int month, int year)
+        {
+            string userName = userManager.GetUserName(User);
+            var events = await _eveRepo.GetAllEvents("", userName);
+            ViewData["today"] = new DateTime(year, month, day, 0, 0, 0);
+            return View(events);
+        }
+
+        [Authorize]
         public async Task<IActionResult> Display(string filter)
         {
             string userName = userManager.GetUserName(User);
             var events = await _eveRepo.GetAllEvents(filter, userName);
+            ViewData["today"] = DateTime.Today;
             if (filter != null)
             {
                 bool isPossiblyType = char.IsLetter(filter.FirstOrDefault());
