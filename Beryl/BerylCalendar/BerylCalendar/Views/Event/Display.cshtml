@@ -3,10 +3,19 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+<div style="float:right;border-left:0;">
+    <button id="eventOptionToggle" class="btn btn-info">Show</button>
+    <br><br>
+    <ul id="displayOptions">
+        <li>
+            <p id="displayColorToggle">Enable Colors</p>
+        </li>
+    </ul>
+</div>
 
 <div class="container">
     <div class="row">
-        <div class="col-md-8">
+        <div >
             @using (Html.BeginForm("Display", "Event"))
             {
                 <div class="input-group mb-3 ">
@@ -22,13 +31,15 @@
                 {
                     foreach (var item in Model)
                     {
-                        <a href="/DetailedEvent/SeeDetailedEvents/@item.Id" class="list-group-item list-group-item-action" aria-current="true">
+                        <a href="/DetailedEvent/SeeDetailedEvents/@item.Id" class="list-group-item list-group-item-action event" aria-current="true">
                             <div class="d-flex w-100 justify-content-between">
                                 <h5 class="mb-1">@Html.DisplayFor(modelItem => item.Title)</h5>
                                 <small>@Html.DisplayFor(modelItem => item.StartDateTime)</small>
                             </div>
-                            <p class="mb-1">@Html.DisplayFor(modelItem => item.Location)</p>
-                            <small>@Html.DisplayFor(modelItem => item.Type)</small>
+                            <div class="d-flex w-100 justify-content-between">
+                                <p class="mb-1">@Html.DisplayFor(modelItem => item.Location)</p>
+                                <small class="eventType">@Html.DisplayFor(modelItem => item.Type.Name)</small>
+                            </div>
                         </a>
                     }
                 }
@@ -38,14 +49,14 @@
                 }
             </div>
         </div>
-        <div class="col-md-4">
+        @* <div class="col-md-4">
             <div class="row">
 
             </div>
             <div class="row">
 
             </div>
-        </div>
+        </div> *@
     </div>
 </div>
 
