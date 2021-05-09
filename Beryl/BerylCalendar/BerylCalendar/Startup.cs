@@ -15,6 +15,8 @@ using Microsoft.Extensions.Hosting;
 using BerylCalendar.Models;
 using BerylCalendar.Data.Abstract;
 using BerylCalendar.Data.Concrete;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using AspNetCoreEmailConfirmationSendGrid.Services;
 
 namespace BerylCalendar
 {
@@ -45,6 +47,13 @@ namespace BerylCalendar
             services.AddControllersWithViews();
 
             services.AddScoped<IEventRepository, EventRepository>();
+
+
+            // requires
+            // using Microsoft.AspNetCore.Identity.UI.Services;
+            // using WebPWrecover.Services;
+            services.AddTransient<IEmailSender, EmailSender>();
+            services.Configure<AuthMessageSenderOptions>(Configuration);
 
         }
 
