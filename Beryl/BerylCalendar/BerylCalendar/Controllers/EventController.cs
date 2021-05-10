@@ -158,5 +158,27 @@ namespace BerylCalendar.Controllers
             }
             return RedirectToAction("Display");
         }
+
+        [Authorize]
+        public async Task<IActionResult> Week()
+        {
+            string userName = userManager.GetUserName(User);
+            DateTime startAtSunday = DateTime.Now.AddDays(DayOfWeek.Sunday - DateTime.Now.DayOfWeek);
+            DateTime endAtSaturday = DateTime.Now.AddDays(DayOfWeek.Saturday - DateTime.Now.DayOfWeek);
+            TimeSpan startOfDay = new TimeSpan(0, 0, 0);
+            TimeSpan endOfDay = new TimeSpan(23, 59, 59);
+
+            startAtSunday = startAtSunday.Date + startOfDay;
+            endAtSaturday = endAtSaturday.Date + endOfDay;
+            Console.WriteLine(startAtSunday);
+            Console.WriteLine(endAtSaturday);
+
+            var events = await _eveRepo.GetEventsFromThisWeek(userName, startAtSunday, endAtSaturday);
+            if (events.Any())
+            {
+                return View("Week", events);
+            }
+            return View("Week");
+        }
     }
 }
