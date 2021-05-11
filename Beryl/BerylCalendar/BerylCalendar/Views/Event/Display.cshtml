@@ -26,6 +26,19 @@
                     </small>
                 </div>
             }
+            @* @using (Html.BeginForm("Interpret", "Luis"))
+            { *@
+                <div class="input-group mb-3 ">
+                    <input type="text" id="phrase" class="form-control" />
+                    <button type="submit" id="ReadAsCommand" class="btn btn-primary">Interpret<bu
+                    <small id="LuisText" class="form-text text-muted">
+                        
+                    </small>
+                </div>
+            @* } *@
+            <div style="float:right;">
+                <button></button>
+            </div>
             <div class="list-group">
                 @if (Model != null)
                 {

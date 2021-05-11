@@ -18,6 +18,9 @@
 //     }
 // }
 
+
+
+
 var displayColors = false;
 
 $("#eventOptionToggle").click(function () {
@@ -81,4 +84,31 @@ function monoTypes() {
         events[i].style.borderColor = "lightgrey";
         events[i].style.backgroundColor = "#fff"
     }
+}
+
+
+
+
+$("#ReadAsCommand").click(function () {
+    console.log("Luis Language Comprehension Used");
+    let address = "/Luis/Interpret";
+    var params = { command: document.getElementById("phrase").value };
+    console.log(params);
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: address,
+        data: params,
+        success: displayIntent,
+        error: LuisAjaxError
+    });
+
+});
+
+function displayIntent(data){
+    console.log(data);
+}
+
+function LuisAjaxError() {
+    console.log("Error in Ajax call");
 }
