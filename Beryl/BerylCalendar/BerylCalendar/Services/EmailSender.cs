@@ -19,7 +19,6 @@ namespace AspNetCoreEmailConfirmationSendGrid.Services
         public Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
             var sendGridKey = apiKey;
-            Console.WriteLine(apiKey);
             return Execute(sendGridKey, subject, htmlMessage, email);
         }
 
