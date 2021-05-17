@@ -9,7 +9,7 @@ namespace AspNetCoreEmailConfirmationSendGrid.Services
     {
         public Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
-            var sendGridKey = @"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";
+            var sendGridKey = @"APIKeyHere";
             return Execute(sendGridKey, subject, htmlMessage, email);
         }
 

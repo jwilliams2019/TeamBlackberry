@@ -182,8 +182,6 @@ namespace BerylCalendar.Controllers
 
             startAtSunday = startAtSunday.Date + startOfDay;
             endAtSaturday = endAtSaturday.Date + endOfDay;
-            Console.WriteLine(startAtSunday);
-            Console.WriteLine(endAtSaturday);
 
             var events = await _eveRepo.GetEventsFromThisWeek(userName, startAtSunday, endAtSaturday);
             if (events.Any())
