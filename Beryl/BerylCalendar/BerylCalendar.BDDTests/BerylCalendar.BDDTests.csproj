@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\MonthView - Copy (2).feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\MonthView - Copy (3).feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\MonthView - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\WeekView - Copy.feature.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
     <PackageReference Include="Selenium.Firefox.WebDriver" Version="0.27.0" />
     <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
@@ -31,6 +38,40 @@
   <ItemGroup>
     <Folder Include="Drivers\" />
     <Folder Include="Hooks\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Features\MonthHighlighting.feature.cs">
+      <DependentUpon>MonthHighlighting.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Features\MonthNavigation.feature.cs">
+      <DependentUpon>MonthNavigation.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Features\AdminAccount.feature.cs">
+      <DependentUpon>AdminAccount.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Features\MonthView.feature.cs">
+      <DependentUpon>MonthView.feature</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <SpecFlowFeatureFiles Update="Features\MonthHighlighting.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Features\MonthNavigation.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Features\AdminAccount.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Features\MonthView.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
   </ItemGroup>
 
 </Project>

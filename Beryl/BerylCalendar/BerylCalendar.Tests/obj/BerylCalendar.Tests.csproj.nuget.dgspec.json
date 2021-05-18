@@ -162,6 +162,26 @@
             "Moq": {
               "target": "Package",
               "version": "[4.16.1, )"
+            },
+            "Selenium.Firefox.WebDriver": {
+              "target": "Package",
+              "version": "[0.27.0, )"
+            },
+            "Selenium.WebDriver": {
+              "target": "Package",
+              "version": "[3.141.0, )"
+            },
+            "SendGrid": {
+              "target": "Package",
+              "version": "[9.23.1, )"
+            },
+            "SpecFlow.NUnit": {
+              "target": "Package",
+              "version": "[3.7.38, )"
+            },
+            "SpecFlow.Plus.LivingDocPlugin": {
+              "target": "Package",
+              "version": "[3.7.141, )"
             }
           },
           "imports": [
