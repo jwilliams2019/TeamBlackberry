@@ -107,6 +107,13 @@ $("#ReadAsCommand").click(function () {
 
 function displayIntent(data){
     console.log(data);
+    if (data == "Error in C# call") {
+        document.getElementById("LuisText").innerText = "There was an error, refresh the page and try again";
+        document.getElementById("LuisText").style.color = "red";
+    }
+    if (data == "Calendar.CreateEvent") {
+        window.location.replace("/Event/CreateEvent");
+    }
 }
 
 function LuisAjaxError() {

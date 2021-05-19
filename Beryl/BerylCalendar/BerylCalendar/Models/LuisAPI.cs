@@ -19,13 +19,28 @@ namespace BerylCalendar.Models
 			Source = endpoint;
         } 
 
+		/*{
+			"query":"create a new appointment called \"hello sean\"",
+			"prediction":
+			{
+				"topIntent":"Calendar.CreateEventWithTitle",
+				"intents":
+				{
+					"Calendar.CreateEventWithTitle":{"score":0.9458488}
+				},
+				"entities":
+				{
+					"Title":["hello sean"]
+				}
+			}
+		}*/
+
 		public string LuisListen(){
 			string jsonResponse = SendRequest(Source);
-			Debug.WriteLine(jsonResponse);
-
-
+			//Debug.WriteLine(jsonResponse);
 			return jsonResponse;
 		}
+
         private static string SendRequest(string uri)
 		{
 			HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
