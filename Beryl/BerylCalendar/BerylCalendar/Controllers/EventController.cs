@@ -74,11 +74,21 @@ namespace BerylCalendar.Controllers
             ViewData["today"] = DateTime.Today;
             if (filter != null)
             {
+                string filterUndercase = filter.ToLower();
+                if (filterUndercase == "meal" || filterUndercase == "activity" || filterUndercase == "visit" || filterUndercase == "shopping")
+                {
+                    var eventType = await _eveRepo.GetEventsByType(filter, userName);
+                    if (eventType.Any())
+                    {
+                        return View(eventType);
+                    }
+                }
+
                 bool isPossiblyType = char.IsLetter(filter.FirstOrDefault());
 
                 if(isPossiblyType == true)
                 {
-                    var eventType = await _eveRepo.GetEventsByType(filter, userName);
+                    var eventType = await _eveRepo.GetEventsByLocation(filter, userName);
                     if (eventType.Any())
                     {
                         return View(eventType);

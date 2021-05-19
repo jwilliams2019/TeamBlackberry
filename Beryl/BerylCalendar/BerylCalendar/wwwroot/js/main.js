@@ -19,6 +19,7 @@
 // }
 
 var displayColors = false;
+var darkmode = false;
 
 $("#eventOptionToggle").click(function () {
     //some borrowed code: https://www.codexworld.com/how-to/toggle-show-hide-element-using-javascript/
@@ -81,4 +82,76 @@ function monoTypes() {
         events[i].style.borderColor = "lightgrey";
         events[i].style.backgroundColor = "#fff"
     }
+}
+
+//Dark mode button switch
+$("#darkModeSwitch").click(function () {
+    if (darkmode === false) {
+        document.body.style.backgroundColor = "black";
+        document.body.style.color = "white";
+        loginBoxTurnDarkGrey();
+        window.localStorage.setItem("dark", "dark");
+        darkmode = true;
+    } else {
+        document.body.style.backgroundColor = "lightgrey";
+        document.body.style.color = "black";
+        loginBoxTurnLightGrey();
+        localStorage.clear();
+        darkmode = false;
+    }
+});
+
+//function that is called if "dark" is in local storage
+function darkModeSwitchOnReady() {
+    document.body.style.backgroundColor = "black";
+    document.body.style.color = "white";
+    loginBoxTurnDarkGrey();
+    darkmode = true;
+}
+
+//checks while page is loading to see if dark is in local storage, calls darkModeSwitchOnReady() if it is.
+document.addEventListener('DOMContentLoaded', function bgColor() {
+    if (!localStorage.getItem("dark")) {
+    } else {
+        darkModeSwitchOnReady();
+    }
+});
+
+//Fixes styling for all pages that use boxbgcolor (create and login) and week view when turned dark
+function loginBoxTurnDarkGrey() {
+    if (document.getElementsByClassName("boxbgcolor")) {
+        changeColumnColor('boxbgcolor', 'darkgrey');
+    }
+
+    if (document.getElementById("darkModeCheck1")) {
+        changeColumnColorById('white')
+    }
+}
+//Fixes styling for all pages that use boxbgcolor (create and login) and week view when turned light
+function loginBoxTurnLightGrey() {
+    if (document.getElementsByClassName("boxbgcolor")) {
+        changeColumnColor('boxbgcolor', 'rgb(240, 240, 240)');
+    }
+
+    if (document.getElementById("darkModeCheck1")) {
+        changeColumnColorById('black')
+    }
+}
+
+function changeColumnColor(column, color) {
+    var cols = document.getElementsByClassName(column);
+    for (i = 0; i < cols.length; i++) {
+        //console.log(cols[i]);
+        cols[i].style.backgroundColor = color;
+    }
+}
+
+function changeColumnColorById(color) {
+    document.getElementById("darkModeCheck1").style.color = color;
+    document.getElementById("darkModeCheck2").style.color = color;
+    document.getElementById("darkModeCheck3").style.color = color;
+    document.getElementById("darkModeCheck4").style.color = color;
+    document.getElementById("darkModeCheck5").style.color = color;
+    document.getElementById("darkModeCheck6").style.color = color;
+    document.getElementById("darkModeCheck7").style.color = color;
 }
