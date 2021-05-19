@@ -20,26 +20,24 @@ namespace BerylCalendar.BDDTests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.7.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("As an account holder, I want to display all of my events in a week so I can see h" +
-        "ow busy this week will be.")]
-    public partial class AsAnAccountHolderIWantToDisplayAllOfMyEventsInAWeekSoICanSeeHowBusyThisWeekWillBe_Feature
+    [NUnit.Framework.DescriptionAttribute("As an account holder, I want to be able search for specific events by location so" +
+        " I can adjust my schedule to save gas.")]
+    public partial class AsAnAccountHolderIWantToBeAbleSearchForSpecificEventsByLocationSoICanAdjustMyScheduleToSaveGas_Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "WeekView.feature"
+#line 1 "EmailAccountConfirmation.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "As an account holder, I want to display all of my events in a week so I can see h" +
-                    "ow busy this week will be.", "<img src=\"https://images.twinkl.co.uk/tw1n/image/private/t_630/image_repo/39/90/u" +
-                    "s-t-l-4077-days-of-the-week-flashcards-english-united-states_ver_1.jpg\" width=15" +
-                    "0 />", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "As an account holder, I want to be able search for specific events by location so" +
+                    " I can adjust my schedule to save gas.", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -79,26 +77,26 @@ namespace BerylCalendar.BDDTests.Features
         
         public virtual void FeatureBackground()
         {
+#line 3
+#line hidden
 #line 4
+  testRunner.Given("the user is not logged into an account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 5
-  testRunner.Given("the user is logged in to any account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 6
-  testRunner.And("that same user has saved events for the current week, starting from sunday", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("that the account name or email the user wants to sign up with is not in use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("A user will be sent to the login page if they try to get into the week view while" +
-            " not logged in")]
-        public virtual void AUserWillBeSentToTheLoginPageIfTheyTryToGetIntoTheWeekViewWhileNotLoggedIn()
+        [NUnit.Framework.DescriptionAttribute("The user will be brought to a page stating they need to verify their account thro" +
+            "ugh email")]
+        public virtual void TheUserWillBeBroughtToAPageStatingTheyNeedToVerifyTheirAccountThroughEmail()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A user will be sent to the login page if they try to get into the week view while" +
-                    " not logged in", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 8
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The user will be brought to a page stating they need to verify their account thro" +
+                    "ugh email", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -118,30 +116,33 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 4
+#line 3
 this.FeatureBackground();
+#line hidden
+#line 8
+  testRunner.Given("the user has successfully created an account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
-  testRunner.Given("the user is not currently logged in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+  testRunner.When("the user is brought to the next page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
-  testRunner.When("the user tries to go to the week view", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 11
-  testRunner.Then("the user will be sent to the login page instead", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+  testRunner.Then("the user will be notified that they have been sent an email to confirm their acco" +
+                        "unt.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("A user can see the week view")]
-        public virtual void AUserCanSeeTheWeekView()
+        [NUnit.Framework.DescriptionAttribute("The user will not be able to go to any of the calendar displays without being a v" +
+            "erified account")]
+        public virtual void TheUserWillNotBeAbleToGoToAnyOfTheCalendarDisplaysWithoutBeingAVerifiedAccount()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A user can see the week view", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 13
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The user will not be able to go to any of the calendar displays without being a v" +
+                    "erified account", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 12
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -161,30 +162,30 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 4
+#line 3
 this.FeatureBackground();
+#line hidden
+#line 13
+  testRunner.Given("the user is not successfully logged in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 14
-  testRunner.Given("the user is logged in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+  testRunner.When("the user tries to reach either the week or calendar view", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 15
-  testRunner.When("they are on the home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 16
-  testRunner.Then("the user clicks on the \"Week\" button on the navbar", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+  testRunner.Then("the user will instead be brought back to the login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("A user will have events show up under the day of the week")]
-        public virtual void AUserWillHaveEventsShowUpUnderTheDayOfTheWeek()
+        [NUnit.Framework.DescriptionAttribute("The user clicks the link given to them in the email and confirms their account")]
+        public virtual void TheUserClicksTheLinkGivenToThemInTheEmailAndConfirmsTheirAccount()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A user will have events show up under the day of the week", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 18
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The user clicks the link given to them in the email and confirms their account", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 17
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -204,17 +205,18 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 4
+#line 3
 this.FeatureBackground();
 #line hidden
+#line 18
+  testRunner.Given("the user recieves a confirmation email when they created their account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
 #line 19
-  testRunner.Given("the user has created an event under a day of the current week", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+  testRunner.When("the user clicks the link that was emailed to them", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 20
-  testRunner.When("the user clicks the \"Week\" button on the navbar", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 21
-  testRunner.Then("the user will see that event under the the day the event starts.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+  testRunner.Then("the user will be brought to a new place informing them that their account has bee" +
+                        "n confirmed and that they can log in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

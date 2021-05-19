@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\DarkMode - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\EmailAccountConfirmation - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\SearchEventsByLocation - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\WeekView - Copy.feature.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
     <PackageReference Include="Selenium.Firefox.WebDriver" Version="0.27.0" />
     <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
@@ -31,6 +38,40 @@
   <ItemGroup>
     <Folder Include="Drivers\" />
     <Folder Include="Hooks\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Features\WeekEventColors.feature.cs">
+      <DependentUpon>WeekEventColors.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Features\DarkMode.feature.cs">
+      <DependentUpon>DarkMode.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Features\SearchEventsByLocation.feature.cs">
+      <DependentUpon>SearchEventsByLocation.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Features\EmailAccountConfirmation.feature.cs">
+      <DependentUpon>EmailAccountConfirmation.feature</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <SpecFlowFeatureFiles Update="Features\WeekEventColors.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Features\DarkMode.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Features\SearchEventsByLocation.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Features\EmailAccountConfirmation.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
   </ItemGroup>
 
 </Project>
