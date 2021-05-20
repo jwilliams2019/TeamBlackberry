@@ -68,7 +68,6 @@ namespace BerylCalendar.Controllers
             options.HttpOnly = true;
 
             Response.Cookies.Append("EventTitle", title, options);
-            
         }
     }
 }

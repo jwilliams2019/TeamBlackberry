@@ -42,8 +42,7 @@ namespace BerylCalendar.Controllers
 
             if (Request.Cookies.ContainsKey("EventTitle")){
                 crud.eve.Title = Request.Cookies["EventTitle"];
-                Response.Cookies.Delete("EventTitle");
-                Debug.WriteLine(Request.Cookies.ContainsKey("EventTitle"));
+                SetCreateEventTitle("");
             }
             return View("CreateEvent", crud);
         } 
@@ -188,6 +187,18 @@ namespace BerylCalendar.Controllers
                 return View("Week", events);
             }
             return View("Week");
+        }
+
+        [Authorize]
+        public void SetCreateEventTitle(string title){
+            CookieOptions options = new CookieOptions();
+
+            options.Domain = "localhost";
+            options.Path = "/Event/CreateEvent";
+            options.Secure = true;
+            options.HttpOnly = true;
+
+            Response.Cookies.Append("EventTitle", title, options);
         }
     }
 }
