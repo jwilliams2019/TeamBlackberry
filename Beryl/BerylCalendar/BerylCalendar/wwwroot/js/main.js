@@ -91,6 +91,7 @@ function monoTypes() {
 
 $("#ReadAsCommand").click(function () {
     console.log("Luis Language Comprehension Used");
+    document.getElementById("LuisText").innerText = "";
     let address = "/Luis/Interpret";
     var params = { command: document.getElementById("phrase").value };
     console.log(params);
@@ -107,12 +108,13 @@ $("#ReadAsCommand").click(function () {
 
 function displayIntent(data){
     console.log(data);
-    if (data == "Error in C# call") {
-        document.getElementById("LuisText").innerText = "There was an error, refresh the page and try again";
-        document.getElementById("LuisText").style.color = "red";
-    }
     if (data == "Calendar.CreateEvent") {
         window.location.replace("/Event/CreateEvent");
+    } else if (data == "Calendar.CreateEventWithTitle") {
+        window.location.replace("/Event/CreateEvent");
+    } else {
+        document.getElementById("LuisText").innerText = "There was an error, refresh the page and try again";
+        document.getElementById("LuisText").style.color = "red";
     }
 }
 

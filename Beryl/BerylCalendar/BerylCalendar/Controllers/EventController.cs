@@ -22,12 +22,14 @@ namespace BerylCalendar.Controllers
         private readonly IEventRepository _eveRepo;
         private BerylDbContext db;
         private readonly UserManager<IdentityUser> userManager;
+        private IHttpContextAccessor _httpContextAccessor;
 
-        public EventController(BerylDbContext db, UserManager<IdentityUser> userManager, IEventRepository eveRepo)
+        public EventController(BerylDbContext db, UserManager<IdentityUser> userManager, IEventRepository eveRepo, IHttpContextAccessor httpContextAccessor)
         {
             this.db = db;
             this.userManager = userManager;
             _eveRepo = eveRepo;
+            _httpContextAccessor = httpContextAccessor;
         } 
 
         [HttpGet]
@@ -36,10 +38,12 @@ namespace BerylCalendar.Controllers
             CrudEvent crud = new CrudEvent();
             crud.errorNum = 0;
             crud.types = db.Types.Select(e => e.Name).ToArray();
+            crud.eve = new Event();
 
             if (Request.Cookies.ContainsKey("EventTitle")){
                 crud.eve.Title = Request.Cookies["EventTitle"];
                 Response.Cookies.Delete("EventTitle");
+                Debug.WriteLine(Request.Cookies.ContainsKey("EventTitle"));
             }
             return View("CreateEvent", crud);
         } 
