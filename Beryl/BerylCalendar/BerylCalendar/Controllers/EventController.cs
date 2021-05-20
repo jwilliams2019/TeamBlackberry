@@ -36,6 +36,11 @@ namespace BerylCalendar.Controllers
             CrudEvent crud = new CrudEvent();
             crud.errorNum = 0;
             crud.types = db.Types.Select(e => e.Name).ToArray();
+
+            if (Request.Cookies.ContainsKey("EventTitle")){
+                crud.eve.Title = Request.Cookies["EventTitle"];
+                Response.Cookies.Delete("EventTitle");
+            }
             return View("CreateEvent", crud);
         } 
 

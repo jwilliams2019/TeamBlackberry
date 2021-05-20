@@ -56,5 +56,16 @@ namespace BerylCalendar.Controllers
             return Json(intent);
         }
 
+        [Authorize]
+        public void SetCreateEventTitle (string title){
+            CookieOptions options = new CookieOptions();
+
+            options.Domain = "/Event/CreateEvent";
+            options.Secure = true;
+            options.HttpOnly = true;
+
+            Response.Cookies.Append("EventTitle", title, options);
+            
+        }
     }
 }
