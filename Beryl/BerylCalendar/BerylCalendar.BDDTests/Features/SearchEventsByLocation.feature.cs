@@ -20,26 +20,24 @@ namespace BerylCalendar.BDDTests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.7.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("As an account holder, I want to display all of my events in a week so I can see h" +
-        "ow busy this week will be.")]
-    public partial class AsAnAccountHolderIWantToDisplayAllOfMyEventsInAWeekSoICanSeeHowBusyThisWeekWillBe_Feature
+    [NUnit.Framework.DescriptionAttribute("As an account holder, I want to be able search for specific events by location so" +
+        " I can adjust my schedule to save time.")]
+    public partial class AsAnAccountHolderIWantToBeAbleSearchForSpecificEventsByLocationSoICanAdjustMyScheduleToSaveTime_Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "WeekView.feature"
+#line 1 "SearchEventsByLocation.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "As an account holder, I want to display all of my events in a week so I can see h" +
-                    "ow busy this week will be.", "<img src=\"https://images.twinkl.co.uk/tw1n/image/private/t_630/image_repo/39/90/u" +
-                    "s-t-l-4077-days-of-the-week-flashcards-english-united-states_ver_1.jpg\" width=15" +
-                    "0 />", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "As an account holder, I want to be able search for specific events by location so" +
+                    " I can adjust my schedule to save time.", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -79,25 +77,28 @@ namespace BerylCalendar.BDDTests.Features
         
         public virtual void FeatureBackground()
         {
+#line 3
+#line hidden
 #line 4
+  testRunner.Given("the user is logged into an account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 5
-  testRunner.Given("the user is logged in to any account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+  testRunner.And("that the user has multiple events scheduled for the same day", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 6
-  testRunner.And("that same user has saved events for the current week, starting from sunday", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+  testRunner.And("that the main display only shows events for the current day", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("A user will be sent to the login page if they try to get into the week view while" +
-            " not logged in")]
-        public virtual void AUserWillBeSentToTheLoginPageIfTheyTryToGetIntoTheWeekViewWhileNotLoggedIn()
+        [NUnit.Framework.DescriptionAttribute("The user will not be able to access the day/month display without being logged in" +
+            "")]
+        public virtual void TheUserWillNotBeAbleToAccessTheDayMonthDisplayWithoutBeingLoggedIn()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A user will be sent to the login page if they try to get into the week view while" +
-                    " not logged in", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The user will not be able to access the day/month display without being logged in" +
+                    "", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -118,14 +119,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 4
+#line 3
 this.FeatureBackground();
 #line hidden
 #line 9
-  testRunner.Given("the user is not currently logged in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+  testRunner.Given("the user is not logged in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 10
-  testRunner.When("the user tries to go to the week view", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+  testRunner.When("the user tries to go to the day/month view", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 11
   testRunner.Then("the user will be sent to the login page instead", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -135,12 +136,14 @@ this.FeatureBackground();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("A user can see the week view")]
-        public virtual void AUserCanSeeTheWeekView()
+        [NUnit.Framework.DescriptionAttribute("The user enters part or all of a location into the search bar and presses \"Search" +
+            "\"")]
+        public virtual void TheUserEntersPartOrAllOfALocationIntoTheSearchBarAndPressesSearch()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A user can see the week view", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The user enters part or all of a location into the search bar and presses \"Search" +
+                    "\"", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 13
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -161,60 +164,18 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 4
+#line 3
 this.FeatureBackground();
 #line hidden
 #line 14
-  testRunner.Given("the user is logged in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+  testRunner.Given("the logged in user is on the day/month page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 15
-  testRunner.When("they are on the home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+  testRunner.When("the user types in part of all of a location for an event that is on that day", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 16
-  testRunner.Then("the user clicks on the \"Week\" button on the navbar", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("A user will have events show up under the day of the week")]
-        public virtual void AUserWillHaveEventsShowUpUnderTheDayOfTheWeek()
-        {
-            string[] tagsOfScenario = ((string[])(null));
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("A user will have events show up under the day of the week", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 18
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 4
-this.FeatureBackground();
-#line hidden
-#line 19
-  testRunner.Given("the user has created an event under a day of the current week", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 20
-  testRunner.When("the user clicks the \"Week\" button on the navbar", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 21
-  testRunner.Then("the user will see that event under the the day the event starts.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+  testRunner.Then("the user will be shown all events that have a location matching the text that was" +
+                        " submitted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

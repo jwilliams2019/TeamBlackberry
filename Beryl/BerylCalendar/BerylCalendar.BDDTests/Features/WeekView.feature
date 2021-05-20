@@ -3,7 +3,13 @@
 
 Background:
 		Given the user is logged in to any account
-		And that same user has saved events for the current week
+		And that same user has saved events for the current week, starting from sunday
+
+Scenario: A user will be sent to the login page if they try to get into the week view while not logged in
+		Given the user is not currently logged in
+		When the user tries to go to the week view
+		Then the user will be sent to the login page instead
+
 Scenario: A user can see the week view
 		Given the user is logged in
 		When they are on the home page

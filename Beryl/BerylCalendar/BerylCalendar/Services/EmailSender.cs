@@ -1,15 +1,24 @@
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.Extensions.Configuration;
 using SendGrid;
 using SendGrid.Helpers.Mail;
+using System;
 using System.Threading.Tasks;
 
 namespace AspNetCoreEmailConfirmationSendGrid.Services
 {
     public class EmailSender : IEmailSender
     {
+        private readonly string apiKey;
+
+        public EmailSender(IConfiguration configuration)
+        {
+            apiKey = configuration["SendGridAPIKeyValue"];
+        }
+
         public Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
-            var sendGridKey = @"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";
+            var sendGridKey = apiKey;
             return Execute(sendGridKey, subject, htmlMessage, email);
         }
 
