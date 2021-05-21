@@ -5,9 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <SpecFlowObsoleteCodeBehindFiles Remove="Features\MonthView - Copy (2).feature.cs" />
-    <SpecFlowObsoleteCodeBehindFiles Remove="Features\MonthView - Copy (3).feature.cs" />
-    <SpecFlowObsoleteCodeBehindFiles Remove="Features\MonthView - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\DarkMode - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\EmailAccountConfirmation - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\SearchEventsByLocation - Copy.feature.cs" />
     <SpecFlowObsoleteCodeBehindFiles Remove="Features\WeekView - Copy.feature.cs" />
   </ItemGroup>
 
@@ -41,34 +41,34 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Features\MonthHighlighting.feature.cs">
-      <DependentUpon>MonthHighlighting.feature</DependentUpon>
+    <Compile Update="Features\WeekEventColors.feature.cs">
+      <DependentUpon>WeekEventColors.feature</DependentUpon>
     </Compile>
-    <Compile Update="Features\MonthNavigation.feature.cs">
-      <DependentUpon>MonthNavigation.feature</DependentUpon>
+    <Compile Update="Features\DarkMode.feature.cs">
+      <DependentUpon>DarkMode.feature</DependentUpon>
     </Compile>
-    <Compile Update="Features\AdminAccount.feature.cs">
-      <DependentUpon>AdminAccount.feature</DependentUpon>
+    <Compile Update="Features\SearchEventsByLocation.feature.cs">
+      <DependentUpon>SearchEventsByLocation.feature</DependentUpon>
     </Compile>
-    <Compile Update="Features\MonthView.feature.cs">
-      <DependentUpon>MonthView.feature</DependentUpon>
+    <Compile Update="Features\EmailAccountConfirmation.feature.cs">
+      <DependentUpon>EmailAccountConfirmation.feature</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <SpecFlowFeatureFiles Update="Features\MonthHighlighting.feature">
+    <SpecFlowFeatureFiles Update="Features\WeekEventColors.feature">
       <Visible>$(UsingMicrosoftNETSdk)</Visible>
       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
     </SpecFlowFeatureFiles>
-    <SpecFlowFeatureFiles Update="Features\MonthNavigation.feature">
+    <SpecFlowFeatureFiles Update="Features\DarkMode.feature">
       <Visible>$(UsingMicrosoftNETSdk)</Visible>
       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
     </SpecFlowFeatureFiles>
-    <SpecFlowFeatureFiles Update="Features\AdminAccount.feature">
+    <SpecFlowFeatureFiles Update="Features\SearchEventsByLocation.feature">
       <Visible>$(UsingMicrosoftNETSdk)</Visible>
       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
     </SpecFlowFeatureFiles>
-    <SpecFlowFeatureFiles Update="Features\MonthView.feature">
+    <SpecFlowFeatureFiles Update="Features\EmailAccountConfirmation.feature">
       <Visible>$(UsingMicrosoftNETSdk)</Visible>
       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
     </SpecFlowFeatureFiles>

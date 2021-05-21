@@ -22,12 +22,14 @@ namespace BerylCalendar.Controllers
         private readonly IEventRepository _eveRepo;
         private BerylDbContext db;
         private readonly UserManager<IdentityUser> userManager;
+        private IHttpContextAccessor _httpContextAccessor;
 
-        public EventController(BerylDbContext db, UserManager<IdentityUser> userManager, IEventRepository eveRepo)
+        public EventController(BerylDbContext db, UserManager<IdentityUser> userManager, IEventRepository eveRepo, IHttpContextAccessor httpContextAccessor)
         {
             this.db = db;
             this.userManager = userManager;
             _eveRepo = eveRepo;
+            _httpContextAccessor = httpContextAccessor;
         } 
 
         [HttpGet]
@@ -36,6 +38,12 @@ namespace BerylCalendar.Controllers
             CrudEvent crud = new CrudEvent();
             crud.errorNum = 0;
             crud.types = db.Types.Select(e => e.Name).ToArray();
+            crud.eve = new Event();
+
+            if (Request.Cookies.ContainsKey("EventTitle")){
+                crud.eve.Title = Request.Cookies["EventTitle"];
+                SetCreateEventTitle("");
+            }
             return View("CreateEvent", crud);
         } 
 
@@ -182,8 +190,6 @@ namespace BerylCalendar.Controllers
 
             startAtSunday = startAtSunday.Date + startOfDay;
             endAtSaturday = endAtSaturday.Date + endOfDay;
-            Console.WriteLine(startAtSunday);
-            Console.WriteLine(endAtSaturday);
 
             var events = await _eveRepo.GetEventsFromThisWeek(userName, startAtSunday, endAtSaturday);
             if (events.Any())
@@ -191,6 +197,18 @@ namespace BerylCalendar.Controllers
                 return View("Week", events);
             }
             return View("Week");
+        }
+
+        [Authorize]
+        public void SetCreateEventTitle(string title){
+            CookieOptions options = new CookieOptions();
+
+            options.Domain = "localhost";
+            options.Path = "/Event/CreateEvent";
+            options.Secure = true;
+            options.HttpOnly = true;
+
+            Response.Cookies.Append("EventTitle", title, options);
         }
     }
 }
