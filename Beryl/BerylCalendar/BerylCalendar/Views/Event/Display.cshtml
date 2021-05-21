@@ -4,7 +4,7 @@
     ViewData["Title"] = "Home Page";
 }
 <head>
-    <link href="~/css/MonthView.css" rel="stylesheet" />
+    <link href="~/css/monthView.css" rel="stylesheet" />
 </head>
 
 <div style="float:right;border-left:0;">
@@ -18,7 +18,7 @@
 </div>
 
 <div class="container">
-    @{ DateTime today = (DateTime) ViewData["today"]; }
+    @{ DateTime today = (DateTime)ViewData["today"]; }
     <div class="row">
         <div>
             @using (Html.BeginForm("Display", "Event"))
@@ -69,12 +69,12 @@
         <div class="col-md-5">
             <div class="month">
                 <ul>
-                    <li class="prev"><a href="#">&#10094</a></li>
-                    <li class="next"><a href="#">&#10095</a></li>
-                    <li class="monthName">@today.ToString("MMMM")</li>
+                    <li id="prev" class="prev"><a href="#">&#10094</a></li>
+                    <li id="next" class="next"><a href="#">&#10095</a></li>
+                    <li id="monthName" class="monthName">@*@today.ToString("MMMM")*@</li>
                 </ul>
             </div>
-            <ul class="weekdays justify-content-between">
+            <ul id="weekdays" class="weekdays justify-content-between">
                 <li>Sun</li>
                 <li>Mon</li>
                 <li>Tues</li>
@@ -83,35 +83,47 @@
                 <li>Fri</li>
                 <li>Sat</li>
             </ul>
-            <ul class="days justify-content-between">
-                @{
-                    DateTime firstDayOfMonth = new DateTime(today.Year, today.Month, 1);
-                    int firstDayCodeOfMonth = (int)firstDayOfMonth.DayOfWeek;
-                    for (int i = 0; i < 42; i++)
-                    {
-                        if ((i >= firstDayCodeOfMonth)
-                            && (i < (DateTime.DaysInMonth(today.Year, today.Month) + firstDayCodeOfMonth)))
+            <ul id="days" class="days justify-content-between">
+                @*@{
+                        DateTime firstDayOfMonth = new DateTime(today.Year, today.Month, 1);
+                        int firstDayCodeOfMonth = (int)firstDayOfMonth.DayOfWeek;
+                        for (int i = 0; i < 42; i++)
                         {
-                            string dayLink = "/Event/Display/" + (i - firstDayCodeOfMonth + 1) + "/" + (today.Month) + "/" + (today.Year);
-                            int dayOfMonth = i - firstDayCodeOfMonth + 1;
-                            <li><a href=@dayLink>@dayOfMonth</a></li>
+                            if ((i >= firstDayCodeOfMonth)
+                                && (i < (DateTime.DaysInMonth(today.Year, today.Month) + firstDayCodeOfMonth)))
+                            {
+                                string dayLink = "/Event/Display/" + (i - firstDayCodeOfMonth + 1) + "/" + (today.Month) + "/" + (today.Year);
+                                int dayOfMonth = i - firstDayCodeOfMonth + 1;
+                                <li><a href=@dayLink>@dayOfMonth</a></li>
+                            }
+                            else
+                            {
+                                <li> </li>
+                            }
                         }
-                        else
-                        {
-                            <li> </li>
-                        }
-                    }
-                }
+                    }*@
             </ul>
         </div>
-    </div> 
+    </div>
 </div>
 
 @section Scripts {
-   @if (ViewData["status"] != null)
+    @if (ViewData["status"] != null)
     {
         <script language="javascript">
             alert("You did not enter two dates or a type. Example: 1/1/2021 4/24/2021 or Shopping.");
         </script>
     }
+
+    <script src="~/js/monthView.js"></script>
+    <script>
+        setBaseMonth(@today.Year, @today.Month-1);
+
+        var listOfUsedDates = [];
+        @foreach (var item in Model) { 
+            @:listOfUsedDates.push(new Date(@item.StartDateTime.Year, @(item.StartDateTime.Month - 1), @item.StartDateTime.Day));
+        }
+        setModel(listOfUsedDates);
+        formatMonth();
+    </script>
 }
