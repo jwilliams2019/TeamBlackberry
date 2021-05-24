@@ -5,12 +5,7 @@ A connection to luis to be able to understand a command to start an event and po
 Background:
     Given I am user "User"
     And I am logged in
-
-
-Example:
-    | Page      | Feature | EventQuery               | Function | TitleQuery                                                    | Interpret   | NoneQuery                  | OopsMessage                                                                                          |
-    | "Display" | "Luis"  | "Create a new Event"     | "Luis"   | "Create a new appointment called Doctor's appointment"        | "Interpret" | "what's the weather like?" | "That is not a recognized command, please input a command to create an event with an optional title" |
-    | "Display" | "Luis"  | "Schedule a new meeting" | "Luis"   | "Create a new space in my calendar for Hangin' with the bros" | "Interpret" | "how old is my daughter?"  | "That is not a recognized command, please input a command to create an event with an optional title" |
+    And I am on the Display Page
 
 @mytag
 Scenario: Writing a Query
@@ -18,25 +13,27 @@ Scenario: Writing a Query
     And I have clicked the "Feature" text box
     When I type on the keyboard
     Then what I type should show up in the same text box
+    Examples:
+        | Page    | Feature |
+        | Display | Luis    |
 
 @mytag
-Scenario: Opening the CreateEvent page via luis
-    Given I am on the "Page" page
-    And I have typed "EventQuery" in the text box
-    When I click the "Function" button
+Scenario: Opening the CreateEvent page via Luis
+    Given I have typed "EventQuery" in the Luis text box
+    When I click the Interpret button
     Then the CreateEvent page will be opened with blank fields
+    Examples:
+        | EventQuery             |
+        | Create a new Event     |
+        | Schedule a new meeting |
 
 @mytag 
-Scenario: Opening the CreateEvent page with a Title field preset via luis
-    Given I am on the "Page" page
-    And I have typed "TitleQuery" in the text box
-    And I have clicked the "Interpret" button
+Scenario: Opening the CreateEvent page with a Title field preset via Luis
+    Given I have typed "TitleQuery" in the Luis text box
+    And I have clicked the Interpret button
     And the "ResultPage" opens
-    Then the Title field in the page will show "TitleQuery"
-
-@mytag
-Scenario: Luis does nothing
-    Given I am on the "Page" page
-    And I have typed "NoneQuery" in the text box
-    And I have clicked the "Interpret" button
-    Then a message saying "OopsMessage" will appear below the "Feature" text box
+    Then the Title field in the page will show "Title"
+    Examples:
+        | TitleQuery                                                  | ResultPage  | Title                 |
+        | Create a new appointment called Doctor's appointment        | CreateEvent | Doctor's appointment  |
+        | Create a new space in my calendar for Hangin' with the bros | CreateEvent | Hangin' with the bros |

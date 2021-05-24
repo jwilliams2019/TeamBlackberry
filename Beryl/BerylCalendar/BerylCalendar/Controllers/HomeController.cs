@@ -56,7 +56,7 @@ namespace BerylCalendar.Controllers
                     return View(1);
                 }
 
-                string token = userManager.GenerateUserTokenAsync(user, "Blackberry", "PasswordReset").ToString();
+                string token = "hello";
 
                 string link = "https://localhost:5001/Home/PasswordChange/?token=" + token;
                 
@@ -66,7 +66,6 @@ namespace BerylCalendar.Controllers
                 return RedirectToAction("PasswordRequestSent", "Home");
             }
             return RedirectToAction("Index");
-            
         }
 
         [HttpGet]
