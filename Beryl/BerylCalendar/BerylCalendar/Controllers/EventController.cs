@@ -82,14 +82,24 @@ namespace BerylCalendar.Controllers
             ViewData["today"] = DateTime.Today;
             if (filter != null)
             {
-                bool isPossiblyType = char.IsLetter(filter.FirstOrDefault());
-
-                if(isPossiblyType == true)
+                string filterUndercase = filter.ToLower();
+                if (filterUndercase == "meal" || filterUndercase == "activity" || filterUndercase == "visit" || filterUndercase == "shopping")
                 {
                     var eventType = await _eveRepo.GetEventsByType(filter, userName);
                     if (eventType.Any())
                     {
-                        return View(eventType);
+                        return View("Display", eventType);
+                    }
+                }
+
+                bool isPossiblyType = char.IsLetter(filter.FirstOrDefault());
+
+                if(isPossiblyType == true)
+                {
+                    var eventType = await _eveRepo.GetEventsByLocation(filter, userName);
+                    if (eventType.Any())
+                    {
+                        return View("Display", eventType);
                     }
                 }
 
@@ -105,23 +115,68 @@ namespace BerylCalendar.Controllers
                         if (DateTime.TryParse(stringTwo, out DateTime endDate))
                         {
                             var events2 = await _eveRepo.GetEventsByDate(filter, userName, startDate, endDate);
-                            return View(events2);
+                            return View("Display", events2);
                         }
                     }
                 }
                 ViewData["status"] = "1";
-                return View(events);
+                return View("Display", events);
             }
-            return View(events);
+            return View("Display", events);
         }
 
         [Authorize]
         [Route("Event/Display/{day}/{month}/{year}")]
-        public async Task<IActionResult> Display(int day, int month, int year)
+        public async Task<IActionResult> Display(int day, int month, int year, string filter)
         {
             string userName = userManager.GetUserName(User);
             var events = await _eveRepo.GetAllEvents("", userName);
             ViewData["today"] = new DateTime(year, month, day, 0, 0, 0);
+
+            var events3 = await _eveRepo.GetAllEvents(filter, userName);
+            if (filter != null)
+            {
+                string filterUndercase = filter.ToLower();
+                if (filterUndercase == "meal" || filterUndercase == "activity" || filterUndercase == "visit" || filterUndercase == "shopping")
+                {
+                    var eventType = await _eveRepo.GetEventsByType(filter, userName);
+                    if (eventType.Any())
+                    {
+                        return View("Display", eventType);
+                    }
+                }
+
+                bool isPossiblyType = char.IsLetter(filter.FirstOrDefault());
+
+                if (isPossiblyType == true)
+                {
+                    var eventType = await _eveRepo.GetEventsByLocation(filter, userName);
+                    if (eventType.Any())
+                    {
+                        return View("Display", eventType);
+                    }
+                }
+
+                Console.WriteLine(filter);
+                string[] dates = filter.Split(' ');
+                if (dates.Length == 2)
+                {
+                    string stringOne = dates[0];
+                    string stringTwo = dates[1];
+
+                    if (DateTime.TryParse(stringOne, out DateTime startDate))
+                    {
+                        if (DateTime.TryParse(stringTwo, out DateTime endDate))
+                        {
+                            var events2 = await _eveRepo.GetEventsByDate(filter, userName, startDate, endDate);
+                            return View("Display", events2);
+                        }
+                    }
+                }
+                ViewData["status"] = "1";
+                return View("Display", events3);
+            }
+
             return View(events);
         }
 
