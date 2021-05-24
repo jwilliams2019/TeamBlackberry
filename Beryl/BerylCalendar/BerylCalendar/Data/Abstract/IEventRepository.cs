@@ -25,5 +25,7 @@ namespace BerylCalendar.Data.Abstract
         Task<List<Event>> GetEventsByType(string filter, string userName);
 
         Task<List<Event>> GetEventsFromThisWeek(string userName, DateTime sunday, DateTime saturday);
+
+        Task<List<Event>> GetEventsByLocation(string filter, string userName);
     }
 }

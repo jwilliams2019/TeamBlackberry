@@ -46,5 +46,11 @@ namespace BerylCalendar.Data.Concrete
             var eventsForWeek = _dbSet.Include(x => x.Type).Include(x => x.Account).Where(e => e.Account.Username == userName).Where(a => a.StartDateTime >= sunday && a.StartDateTime <= saturday).OrderBy(y => y.StartDateTime).ToListAsync();
             return eventsForWeek;
         }
+
+        public virtual Task<List<Event>> GetEventsByLocation(string filter, string userName)
+        {
+            var test = _dbSet.Include(x => x.Account).Where(e => e.Account.Username == userName).Where(a => a.Location.Contains(filter)).OrderBy(y => y.StartDateTime).ToListAsync();
+            return test;
+        }
     }
 }
