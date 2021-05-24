@@ -68,3 +68,7 @@ a {
         border: 1px solid black;
         float: left;
     }
+
+        .days li.used {
+            background-color: aquamarine;
+        }
