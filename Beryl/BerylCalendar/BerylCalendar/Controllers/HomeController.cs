@@ -56,10 +56,11 @@ namespace BerylCalendar.Controllers
                     return View(1);
                 }
 
-                string token = userManager.GenerateUserTokenAsync(user, "Blackberry", "PasswordReset").ToString();
+                string token = "hello";
 
-                string link = "https://localhost:5001/Home/PasswordChange/?token=" + token;
-                
+                //string link = "https://localhost:5001/Home/PasswordChange/?token=" + token;
+                string link = "https://berylcalendarapp.azurewebsites.net/Home/PasswordChange/?token=" + token;
+
                 await _emailSender.SendEmailAsync(emailForPass, "Change your Password", 
                     htmlMessage: $"Change your password by <a href='{HtmlEncoder.Default.Encode(link)}'>clicking here</a>.");
 
