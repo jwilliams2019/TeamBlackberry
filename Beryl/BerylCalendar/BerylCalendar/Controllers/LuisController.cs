@@ -15,7 +15,6 @@ using BerylCalendar.Data.Abstract;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 
 namespace BerylCalendar.Controllers
@@ -50,7 +49,8 @@ namespace BerylCalendar.Controllers
             try {
                 intent = (string)response["prediction"]["topIntent"];
             } catch (NullReferenceException e) {
-                Debug.WriteLine("Error in C# call");
+                Debug.WriteLine(e);
+                //Debug.WriteLine("Error in C# call");
             }
 
             if (intent.Equals("Error in C# call") == false){
