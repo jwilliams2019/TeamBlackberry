@@ -191,3 +191,7 @@ function displayIntent(data){
 function LuisAjaxError() {
     console.log("Error in Ajax call");
 }
+
+function PasswordRequestError() {
+    document.getElementById("error-message").innerText = "The entered email address does not exist. Register a new account today!";
+}
