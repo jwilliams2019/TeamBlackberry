@@ -18,6 +18,9 @@
 //     }
 // }
 
+
+
+
 var displayColors = false;
 var darkmode = false;
 
@@ -154,4 +157,38 @@ function changeColumnColorById(color) {
     document.getElementById("darkModeCheck5").style.color = color;
     document.getElementById("darkModeCheck6").style.color = color;
     document.getElementById("darkModeCheck7").style.color = color;
+
+
+
+$("#ReadAsCommand").click(function () {
+    console.log("Luis Language Comprehension Used");
+    document.getElementById("LuisText").innerText = "";
+    let address = "/Luis/Interpret";
+    var params = { command: document.getElementById("phrase").value };
+    console.log(params);
+    $.ajax({
+        type: "POST",
+        dataType: "json",
+        url: address,
+        data: params,
+        success: displayIntent,
+        error: LuisAjaxError
+    });
+
+});
+
+function displayIntent(data){
+    console.log(data);
+    if (data == "Calendar.CreateEvent") {
+        window.location.replace("/Event/CreateEvent");
+    } else if (data == "Calendar.CreateEventWithTitle") {
+        window.location.replace("/Event/CreateEvent");
+    } else {
+        document.getElementById("LuisText").innerText = "There was an error, refresh the page and try again";
+        document.getElementById("LuisText").style.color = "red";
+    }
+}
+
+function LuisAjaxError() {
+    console.log("Error in Ajax call");
 }

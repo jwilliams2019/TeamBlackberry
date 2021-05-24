@@ -23,20 +23,6 @@ namespace BerylCalendar.Controllers
             this.userManager = userManager;
         }
 
-        public IActionResult SeeEvents2()
-        {
-            return View();
-        }
-
-
-        [Authorize]
-        [HttpGet]
-        public IActionResult SeeEvents()
-        {
-            int accountId = db.Accounts.Where(e => e.Username == userManager.GetUserName(User)).Select(e => e.Id).ToArray()[0];
-            var events = db.Events.Where(c => c.AccountId == accountId);
-            return View(events);
-        }
 
         [Authorize]
         [HttpGet]
