@@ -80,12 +80,9 @@ namespace BerylCalendar.BDDTests.Features
 #line 3
 #line hidden
 #line 4
-  testRunner.Given("the user is logged into an account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+  testRunner.Given("that the user has multiple events scheduled for the same day", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 5
-  testRunner.And("that the user has multiple events scheduled for the same day", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 6
   testRunner.And("that the main display only shows events for the current day", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
         }
@@ -99,7 +96,7 @@ namespace BerylCalendar.BDDTests.Features
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The user will not be able to access the day/month display without being logged in" +
                     "", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 8
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -122,13 +119,13 @@ this.ScenarioInitialize(scenarioInfo);
 #line 3
 this.FeatureBackground();
 #line hidden
-#line 9
+#line 8
   testRunner.Given("the user is not logged in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 10
+#line 9
   testRunner.When("the user tries to go to the day/month view", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 11
+#line 10
   testRunner.Then("the user will be sent to the login page instead", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -144,7 +141,7 @@ this.FeatureBackground();
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The user enters part or all of a location into the search bar and presses \"Search" +
                     "\"", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 13
+#line 12
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -167,8 +164,11 @@ this.ScenarioInitialize(scenarioInfo);
 #line 3
 this.FeatureBackground();
 #line hidden
+#line 13
+  testRunner.Given("the user is logged in user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
 #line 14
-  testRunner.Given("the logged in user is on the day/month page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+  testRunner.And("the logged in user is on the day/month page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 15
   testRunner.When("the user types in part of all of a location for an event that is on that day", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

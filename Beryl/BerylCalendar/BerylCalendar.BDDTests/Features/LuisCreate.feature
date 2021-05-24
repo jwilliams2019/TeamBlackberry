@@ -7,10 +7,10 @@ Background:
     And I am logged in
 
 
-Example:
-    | Page      | Feature | EventQuery               | Function | TitleQuery                                                    | Interpret   | NoneQuery                  | OopsMessage                                                                                          |
-    | "Display" | "Luis"  | "Create a new Event"     | "Luis"   | "Create a new appointment called Doctor's appointment"        | "Interpret" | "what's the weather like?" | "That is not a recognized command, please input a command to create an event with an optional title" |
-    | "Display" | "Luis"  | "Schedule a new meeting" | "Luis"   | "Create a new space in my calendar for Hangin' with the bros" | "Interpret" | "how old is my daughter?"  | "That is not a recognized command, please input a command to create an event with an optional title" |
+#Example:
+#    | Page      | Feature | EventQuery               | Function | TitleQuery                                                    | Interpret   | NoneQuery                  | OopsMessage                                                                                          |
+#    | "Display" | "Luis"  | "Create a new Event"     | "Luis"   | "Create a new appointment called Doctor's appointment"        | "Interpret" | "what's the weather like?" | "That is not a recognized command, please input a command to create an event with an optional title" |
+#    | "Display" | "Luis"  | "Schedule a new meeting" | "Luis"   | "Create a new space in my calendar for Hangin' with the bros" | "Interpret" | "how old is my daughter?"  | "That is not a recognized command, please input a command to create an event with an optional title" |
 
 @mytag
 Scenario: Writing a Query
