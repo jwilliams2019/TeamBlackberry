@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using System.Text.Encodings.Web;
 
 namespace BerylCalendar.Controllers
 {
@@ -44,42 +45,53 @@ namespace BerylCalendar.Controllers
 
         [HttpGet]
         public IActionResult PasswordChangeRequest(){
-            return View();
+            return View(0);
         }
 
         [HttpPost]
-        public IActionResult PasswordChangeRequest(string emailForPass){
-            Debug.WriteLine(emailForPass);
+        public async Task<IActionResult> PasswordChangeRequest(string emailForPass){
+            if (ModelState.IsValid){
+                var user = await userManager.FindByEmailAsync(emailForPass);
+                if (user == null){
+                    return View(1);
+                }
 
-            var callbackUrl = Url.Page(
-                "/Home/PasswordChange/?email="+emailForPass,
-                pageHandler: null,
-                values: new { area = "" },
-                protocol: Request.Scheme);
-            return RedirectToAction("PasswordRequestSent", "Home");
+                string token = userManager.GenerateUserTokenAsync(user, "Blackberry", "PasswordReset").ToString();
+
+                string link = "https://localhost:5001/Home/PasswordChange/?token=" + token;
+                
+                await _emailSender.SendEmailAsync(emailForPass, "Change your Password", 
+                    htmlMessage: $"Change your password by <a href='{HtmlEncoder.Default.Encode(link)}'>clicking here</a>.");
+
+                return RedirectToAction("PasswordRequestSent", "Home");
+            }
+            return RedirectToAction("Index");
+            
         }
 
         [HttpGet]
-        public IActionResult PasswordRquestSent(){
+        public IActionResult PasswordRequestSent(){
             return View();
         }
 
         [HttpGet]
-        public async Task<IActionResult> PasswordChange(string email){
+        public IActionResult PasswordChange(string token){
+            ViewData["PasswordChangeToken"] = token;
+            return View(0);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PasswordChange(string token, string email, string newPassword, string newPasswordConfirm){
             var user = await userManager.FindByEmailAsync(email);
             if (user == null){
                 return RedirectToAction("PasswordChangeRequest");
             }
-            ViewData["email"] = email;
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> PasswordChange(string email, string newPassword){
-            var user = await userManager.FindByEmailAsync(email);
-            if (user == null){
-                return RedirectToAction("PasswordChangeRequest");
+            if (!newPassword.Equals(newPasswordConfirm))
+            {
+                ViewData["PasswordChangeUser"] = user.Id;
+                return View(1);
             }
+            
             user.PasswordHash = userManager.PasswordHasher.HashPassword(user, newPassword);
             var result = await userManager.UpdateAsync(user);
             if (!result.Succeeded){
