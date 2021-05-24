@@ -1391,7 +1391,7 @@
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
       },
-      "Newtonsoft.Json/11.0.2": {
+      "Newtonsoft.Json/12.0.3": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
@@ -3361,6 +3361,7 @@
           "Microsoft.EntityFrameworkCore.Tools": "5.0.3",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "5.0.2",
           "Moq": "4.16.1",
+          "Newtonsoft.Json": "12.0.3",
           "Selenium.Firefox.WebDriver": "0.27.0",
           "Selenium.WebDriver": "3.141.0",
           "SendGrid": "9.23.1",
@@ -5587,10 +5588,10 @@
         "netstandard.library.nuspec"
       ]
     },
-    "Newtonsoft.Json/11.0.2": {
-      "sha512": "IvJe1pj7JHEsP8B8J8DwlMEx8UInrs/x+9oVY+oCD13jpLu4JbJU2WCIsMRn5C4yW9+DgkaO8uiVE5VHKjpmdQ==",
+    "Newtonsoft.Json/12.0.3": {
+      "sha512": "6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg==",
       "type": "package",
-      "path": "newtonsoft.json/11.0.2",
+      "path": "newtonsoft.json/12.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5613,8 +5614,9 @@
         "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.xml",
         "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll",
         "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.xml",
-        "newtonsoft.json.11.0.2.nupkg.sha512",
-        "newtonsoft.json.nuspec"
+        "newtonsoft.json.12.0.3.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
       ]
     },
     "NuGet.Frameworks/5.0.0": {
@@ -10756,19 +10758,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\voice\\.nuget\\packages\\": {}
+    "C:\\Users\\rmap4\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\voice\\Desktop\\Team Blackberry\\TeamBlackberry\\Beryl\\BerylCalendar\\BerylCalendar.Tests\\BerylCalendar.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\rmap4\\TeamBlackberry\\Beryl\\BerylCalendar\\BerylCalendar.Tests\\BerylCalendar.Tests.csproj",
       "projectName": "BerylCalendar.Tests",
-      "projectPath": "C:\\Users\\voice\\Desktop\\Team Blackberry\\TeamBlackberry\\Beryl\\BerylCalendar\\BerylCalendar.Tests\\BerylCalendar.Tests.csproj",
-      "packagesPath": "C:\\Users\\voice\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\voice\\Desktop\\Team Blackberry\\TeamBlackberry\\Beryl\\BerylCalendar\\BerylCalendar.Tests\\obj\\",
+      "projectPath": "C:\\Users\\rmap4\\TeamBlackberry\\Beryl\\BerylCalendar\\BerylCalendar.Tests\\BerylCalendar.Tests.csproj",
+      "packagesPath": "C:\\Users\\rmap4\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\rmap4\\TeamBlackberry\\Beryl\\BerylCalendar\\BerylCalendar.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\voice\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\rmap4\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -10782,8 +10784,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\voice\\Desktop\\Team Blackberry\\TeamBlackberry\\Beryl\\BerylCalendar\\BerylCalendar\\BerylCalendar.csproj": {
-              "projectPath": "C:\\Users\\voice\\Desktop\\Team Blackberry\\TeamBlackberry\\Beryl\\BerylCalendar\\BerylCalendar\\BerylCalendar.csproj"
+            "C:\\Users\\rmap4\\TeamBlackberry\\Beryl\\BerylCalendar\\BerylCalendar\\BerylCalendar.csproj": {
+              "projectPath": "C:\\Users\\rmap4\\TeamBlackberry\\Beryl\\BerylCalendar\\BerylCalendar\\BerylCalendar.csproj"
             }
           }
         }
