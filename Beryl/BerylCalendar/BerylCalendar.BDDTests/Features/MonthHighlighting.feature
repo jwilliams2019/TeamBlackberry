@@ -4,12 +4,11 @@ Background:
 		Given the user is logged in to any account
 		And that same user has saved events
 Scenario: A user can see highlighted days within the month display
-		Given the user is logged in
-		When they are on the display page
-		Then the user will see days within the month view highlighted if they contain events.
+		Given the user is on the display page
+		When they navigate to a month
+		Then the user will see days within that month highlighted if they contain events.
 
 Scenario: A user can change the highlighted days within the month display
-		Given the user is logged in
-		When the user creates or deletes an event
-		And navigates to the display page
+		Given the user creates or deletes an event
+		When the user navigates to the display page
 		Then the user will see the month display update to include their additions/deletions.
