@@ -157,8 +157,7 @@ function changeColumnColorById(color) {
     document.getElementById("darkModeCheck5").style.color = color;
     document.getElementById("darkModeCheck6").style.color = color;
     document.getElementById("darkModeCheck7").style.color = color;
-
-
+}
 
 $("#ReadAsCommand").click(function () {
     console.log("Luis Language Comprehension Used");
