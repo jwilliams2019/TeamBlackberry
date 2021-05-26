@@ -1,0 +1,77 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\DarkMode - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\EmailAccountConfirmation - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\SearchEventsByLocation - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\WeekView - Copy.feature.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+    <PackageReference Include="Selenium.Firefox.WebDriver" Version="0.27.0" />
+    <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
+    <PackageReference Include="SendGrid" Version="9.23.1" />
+    <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.7.141" />
+
+    
+
+    
+
+    
+    <PackageReference Include="SpecFlow.NUnit" Version="3.8.14" />
+    <PackageReference Include="nunit" Version="3.13.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
+    
+
+    
+
+    
+    <PackageReference Include="FluentAssertions" Version="5.10.3" />
+    
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Drivers\" />
+    <Folder Include="Hooks\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Features\WeekEventColors.feature.cs">
+      <DependentUpon>WeekEventColors.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Features\DarkMode.feature.cs">
+      <DependentUpon>DarkMode.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Features\SearchEventsByLocation.feature.cs">
+      <DependentUpon>SearchEventsByLocation.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Features\EmailAccountConfirmation.feature.cs">
+      <DependentUpon>EmailAccountConfirmation.feature</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <SpecFlowFeatureFiles Update="Features\WeekEventColors.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Features\DarkMode.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Features\SearchEventsByLocation.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Features\EmailAccountConfirmation.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+  </ItemGroup>
+
+</Project>

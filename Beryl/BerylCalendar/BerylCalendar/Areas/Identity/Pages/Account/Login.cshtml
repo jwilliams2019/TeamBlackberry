@@ -34,12 +34,12 @@
                         <button type="submit" class="btn btn-primary">Log in</button>
                     </div>
                     <span> <br /></span>
-                    @*
-                    <div class="form-group">
+                    
+                    <div>
                         <p>
-                            <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                            <a id="forgot-password" asp-action="PasswordChangeRequest" asp-controller="Home">Forgot your password?</a>
                         </p>
-                        <p>
+                        @*<p>
                             <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
                         </p>
                         <p>

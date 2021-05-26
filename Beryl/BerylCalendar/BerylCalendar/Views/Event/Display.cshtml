@@ -1,0 +1,140 @@
+﻿@model IEnumerable<BerylCalendar.Models.Event>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<head>
+    <link href="~/css/monthView.css" rel="stylesheet" />
+</head>
+
+<div style="float:right;border-left:0;">
+    <button id="eventOptionToggle" class="btn btn-info">Show</button>
+    <br><br>
+    <ul id="displayOptions">
+        <li>
+            <p id="displayColorToggle">Enable Colors</p>
+        </li>
+    </ul>
+</div>
+
+<div class="container">
+    @{ DateTime today = (DateTime)ViewData["today"]; }
+    <div class="row">
+        <div>
+            @using (Html.BeginForm("Display", "Event"))
+            {
+                <div class="input-group mb-3 ">
+                    <input type="text" name="filter" class="form-control" />
+                    <input type="submit" value="Submit" class="btn btn-primary" />
+                    <small id="searchExample" class="form-text text-muted">
+                        You may search between two different dates, a location, or an event type. Event types are: Shopping, Visit, Meal, and Activity. Example of a search between dates: 1/1/2021 5/1/2021. Anything else will be a search for location.
+                    </small>
+                </div>
+            }
+<!-- mine -->
+            <div class="input-group mb-3 ">
+                <input type="text" id="phrase" class="form-control" />
+                <button type="submit" id="ReadAsCommand" class="btn btn-primary">Interpret</button>
+            </div>
+            <small id="LuisText" class="form-text text-muted">
+                
+            </small>
+            <br>
+<!--  -->
+        </div>
+        <div class="col-md-7">
+<!-- dev -->
+            <div class="list-group">
+                @if (Model != null)
+                {
+                    DateTime endOfPriorEvent = new DateTime(2020, 1, 1, 0, 0, 0);
+                    foreach (var item in Model)
+                    {
+                        if ((item.StartDateTime.Day == today.Day) && (item.StartDateTime.Month == today.Month)
+                            && (item.StartDateTime.Year == today.Year))
+                        {
+                            if (item.StartDateTime.CompareTo(endOfPriorEvent) < 0)
+                            {
+                                <p class="text-warning text-center">Warning: Last event ends before next event begins. </p>
+                            }
+                            <a href="/DetailedEvent/SeeDetailedEvents/@item.Id" class="list-group-item list-group-item-action event" aria-current="true">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">@Html.DisplayFor(modelItem => item.Title)</h5>
+                                    <small>@Html.DisplayFor(modelItem => item.StartDateTime)</small>
+                                </div>
+                                <div class="d-flex w-100 justify-content-between">
+                                    <p class="mb-1">@Html.DisplayFor(modelItem => item.Location)</p>
+                                    <small class="eventType">@Html.DisplayFor(modelItem => item.Type.Name)</small>
+                                </div>
+                            </a>
+                            endOfPriorEvent = item.EndDateTime;
+                        }
+                    }
+                }
+                else
+                {
+                    <p>You have no saved events.</p>
+                }
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="month">
+                <ul>
+                    <li id="prev" class="prev"><a href="#">&#10094</a></li>
+                    <li id="next" class="next"><a href="#">&#10095</a></li>
+                    <li id="monthName" class="monthName">@*@today.ToString("MMMM")*@</li>
+                </ul>
+            </div>
+            <ul id="weekdays" class="weekdays justify-content-between">
+                <li>Sun</li>
+                <li>Mon</li>
+                <li>Tues</li>
+                <li>Wed</li>
+                <li>Thur</li>
+                <li>Fri</li>
+                <li>Sat</li>
+            </ul>
+            <ul id="days" class="days justify-content-between">
+                @*@{
+                        DateTime firstDayOfMonth = new DateTime(today.Year, today.Month, 1);
+                        int firstDayCodeOfMonth = (int)firstDayOfMonth.DayOfWeek;
+                        for (int i = 0; i < 42; i++)
+                        {
+                            if ((i >= firstDayCodeOfMonth)
+                                && (i < (DateTime.DaysInMonth(today.Year, today.Month) + firstDayCodeOfMonth)))
+                            {
+                                string dayLink = "/Event/Display/" + (i - firstDayCodeOfMonth + 1) + "/" + (today.Month) + "/" + (today.Year);
+                                int dayOfMonth = i - firstDayCodeOfMonth + 1;
+                                <li><a href=@dayLink>@dayOfMonth</a></li>
+                            }
+                            else
+                            {
+                                <li> </li>
+                            }
+                        }
+                    }*@
+            </ul>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @if (ViewData["status"] != null)
+    {
+        <script language="javascript">
+            alert("You did not enter two dates or a type. Example: 1/1/2021 4/24/2021 or Shopping.");
+        </script>
+    }
+
+    <script src="~/js/monthView.js"></script>
+    <script>
+        setBaseMonth(@today.Year, @today.Month-1);
+
+        var listOfUsedDates = [];
+        @foreach (var item in Model) { 
+            @:listOfUsedDates.push(new Date(@item.StartDateTime.Year, @(item.StartDateTime.Month - 1), @item.StartDateTime.Day));
+        }
+        setModel(listOfUsedDates);
+        formatMonth();
+    </script>
+}

@@ -13,6 +13,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BerylCalendar.Models;
+using BerylCalendar.Data.Abstract;
+using BerylCalendar.Data.Concrete;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using AspNetCoreEmailConfirmationSendGrid.Services;
 
 namespace BerylCalendar
 {
@@ -39,8 +43,19 @@ namespace BerylCalendar
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
+
+            services.AddScoped<IEventRepository, EventRepository>();
+
+
+            // requires
+            // using Microsoft.AspNetCore.Identity.UI.Services;
+            // using WebPWrecover.Services;
+            services.AddTransient<IEmailSender, EmailSender>();
+            services.Configure<AuthMessageSenderOptions>(Configuration);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

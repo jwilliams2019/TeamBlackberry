@@ -1,0 +1,202 @@
+﻿@model IEnumerable<BerylCalendar.Models.Event>
+@{
+    ViewData["Title"] = "Home Page";
+}
+<body style="background-color:lightgrey">
+    @if (Model != null)
+    {
+        <div class="row">
+            <div class="col">
+                <table class="table table-sm">
+                    <tr>
+                        <th class="text-center" id="darkModeCheck1">Sunday</th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            @if (item.StartDateTime.DayOfWeek == DayOfWeek.Sunday)
+                            {
+                                <td>
+                                    <a href="/DetailedEvent/SeeDetailedEvents/@item.Id" class="list-group-item list-group-item-action event" aria-current="true">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h5 class="mb-1">@Html.DisplayFor(modelItem => item.Title)</h5>
+                                        </div>
+                                        <small>@Html.DisplayFor(modelItem => item.StartDateTime)</small>
+                                        <p class="mb-1">@Html.DisplayFor(modelItem => item.Location)</p>
+                                        <small class="eventType">@Html.DisplayFor(modelItem => item.Type.Name)</small>
+                                    </a>
+                                </td>
+                            }
+                        </tr>
+                    }
+                </table>
+            </div>
+            <div class="col">
+                <table class="table table-sm">
+                    <tr>
+                        <th class="text-center" id="darkModeCheck2">Monday</th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            @if (item.StartDateTime.DayOfWeek == DayOfWeek.Monday)
+                            {
+                                <td>
+                                    <a href="/DetailedEvent/SeeDetailedEvents/@item.Id" class="list-group-item list-group-item-action event" aria-current="true">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h5 class="mb-1">@Html.DisplayFor(modelItem => item.Title)</h5>
+                                        </div>
+                                        <small>@Html.DisplayFor(modelItem => item.StartDateTime)</small>
+                                        <p class="mb-1">@Html.DisplayFor(modelItem => item.Location)</p>
+                                        <small class="eventType">@Html.DisplayFor(modelItem => item.Type.Name)</small>
+                                    </a>
+                                </td>
+                            }
+                        </tr>
+                    }
+                </table>
+            </div>
+            <div class="col">
+                <table class="table table-sm">
+                    <tr>
+                        <th class="text-center" id="darkModeCheck3">Tuesday</th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            @if (item.StartDateTime.DayOfWeek == DayOfWeek.Tuesday)
+                            {
+                                <td>
+                                    <a href="/DetailedEvent/SeeDetailedEvents/@item.Id" class="list-group-item list-group-item-action event" aria-current="true">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h5 class="mb-1">@Html.DisplayFor(modelItem => item.Title)</h5>
+                                        </div>
+                                        <small>@Html.DisplayFor(modelItem => item.StartDateTime)</small>
+                                        <p class="mb-1">@Html.DisplayFor(modelItem => item.Location)</p>
+                                        <small class="eventType">@Html.DisplayFor(modelItem => item.Type.Name)</small>
+                                    </a>
+                                </td>
+                            }
+                        </tr>
+                    }
+                </table>
+            </div>
+            <div class="col">
+                <table class="table table-sm">
+                    <tr>
+                        <th class="text-center" id="darkModeCheck4">Wednesday</th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            @if (item.StartDateTime.DayOfWeek == DayOfWeek.Wednesday)
+                            {
+                                <td>
+                                    <a href="/DetailedEvent/SeeDetailedEvents/@item.Id" class="list-group-item list-group-item-action event" aria-current="true">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h5 class="mb-1">@Html.DisplayFor(modelItem => item.Title)</h5>
+                                        </div>
+                                        <small>@Html.DisplayFor(modelItem => item.StartDateTime)</small>
+                                        <p class="mb-1">@Html.DisplayFor(modelItem => item.Location)</p>
+                                        <small class="eventType">@Html.DisplayFor(modelItem => item.Type.Name)</small>
+                                    </a>
+                                </td>
+                            }
+                        </tr>
+                    }
+                </table>
+            </div>
+            <div class="col">
+                <table class="table table-sm">
+                    <tr>
+                        <th class="text-center" id="darkModeCheck5">Thursday</th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            @if (item.StartDateTime.DayOfWeek == DayOfWeek.Thursday)
+                            {
+                                <td>
+                                    <a href="/DetailedEvent/SeeDetailedEvents/@item.Id" class="list-group-item list-group-item-action event" aria-current="true">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h5 class="mb-1">@Html.DisplayFor(modelItem => item.Title)</h5>
+                                        </div>
+                                        <small>@Html.DisplayFor(modelItem => item.StartDateTime)</small>
+                                        <p class="mb-1">@Html.DisplayFor(modelItem => item.Location)</p>
+                                        <small class="eventType">@Html.DisplayFor(modelItem => item.Type.Name)</small>
+                                    </a>
+                                </td>
+                            }
+                        </tr>
+                    }
+                </table>
+            </div>
+            <div class="col">
+                <table class="table table-sm">
+                    <tr>
+                        <th class="text-center" id="darkModeCheck6">Friday</th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            @if (item.StartDateTime.DayOfWeek == DayOfWeek.Friday)
+                            {
+                                <td>
+                                    <a href="/DetailedEvent/SeeDetailedEvents/@item.Id" class="list-group-item list-group-item-action event" aria-current="true">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h5 class="mb-1">@Html.DisplayFor(modelItem => item.Title)</h5>
+                                        </div>
+                                        <small>@Html.DisplayFor(modelItem => item.StartDateTime)</small>
+                                        <p class="mb-1">@Html.DisplayFor(modelItem => item.Location)</p>
+                                        <small class="eventType">@Html.DisplayFor(modelItem => item.Type.Name)</small>
+                                    </a>
+                                </td>
+                            }
+                        </tr>
+                    }
+                </table>
+            </div>
+            <div class="col">
+                <table class="table table-sm">
+                    <tr>
+                        <th class="text-center" id="darkModeCheck7">Saturday</th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            @if (item.StartDateTime.DayOfWeek == DayOfWeek.Saturday)
+                            {
+                                <td>
+                                    <a href="/DetailedEvent/SeeDetailedEvents/@item.Id" class="list-group-item list-group-item-action event" aria-current="true">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h5 class="mb-1">@Html.DisplayFor(modelItem => item.Title)</h5>
+                                        </div>
+                                        <small>@Html.DisplayFor(modelItem => item.StartDateTime)</small>
+                                        <p class="mb-1">@Html.DisplayFor(modelItem => item.Location)</p>
+                                        <small class="eventType">@Html.DisplayFor(modelItem => item.Type.Name)</small>
+                                    </a>
+                                </td>
+                            }
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    }
+    else
+    {
+        <p>The are no events for the current day.</p>
+    }
+</body>
+
+    @section Scripts {
+        <script language="javascript">
+            $("#displayColorToggleReady").ready(function () {
+                console.log(displayColors);
+                if (displayColors === false) {
+                    colorTypes();
+                    displayColors = true;
+                }
+            });
+        </script>
+    }

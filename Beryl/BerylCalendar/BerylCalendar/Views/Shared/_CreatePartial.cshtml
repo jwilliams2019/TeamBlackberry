@@ -1,0 +1,13 @@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+<li class="nav-item">
+    <a class="nav-link text-white" asp-area="" asp-controller="Event" asp-action="CreateEvent">Create+</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link text-white" asp-area="" asp-controller="Event" asp-action="Week">Week</a>
+</li>
+}
