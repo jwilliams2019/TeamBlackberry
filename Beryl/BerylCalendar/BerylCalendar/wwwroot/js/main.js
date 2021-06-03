@@ -1,26 +1,3 @@
-// function CreateError(a){
-//     var text = "";
-//     if (a.num == 1){
-//         window.alert("Invalid model");
-//     } else {
-//         switch (a.num){
-//             case 0:
-//                 break;
-//             case 2:
-//                 text += "Ending Date and Time are prior to Starting Date and Time\n";
-//                 continue;
-//             default:
-//                 window.alert(text);
-//                 break;
-//         }
-        
-//         window.alert(text);
-//     }
-// }
-
-
-
-
 var displayColors = false;
 var darkmode = false;
 
@@ -164,7 +141,6 @@ $("#ReadAsCommand").click(function () {
     document.getElementById("LuisText").innerText = "";
     let address = "/Luis/Interpret";
     var params = { command: document.getElementById("phrase").value };
-    console.log(params);
     $.ajax({
         type: "POST",
         dataType: "json",
@@ -177,11 +153,13 @@ $("#ReadAsCommand").click(function () {
 });
 
 function displayIntent(data){
-    console.log(data);
     if (data == "Calendar.CreateEvent") {
         window.location.replace("/Event/CreateEvent");
     } else if (data == "Calendar.CreateEventWithTitle") {
         window.location.replace("/Event/CreateEvent");
+    } else if (data == "None") {
+        document.getElementById("LuisText").innerText = "I'm sorry, I don't know what you said. Please type a phrase in common language to take an action on an event. \n For example, to create an event with a title preset: \"Make a new event titled Spending Time with my Family\"";
+        document.getElementById("LuisText").style.color = "red";
     } else {
         document.getElementById("LuisText").innerText = "There was an error, refresh the page and try again";
         document.getElementById("LuisText").style.color = "red";
@@ -190,8 +168,5 @@ function displayIntent(data){
 
 function LuisAjaxError() {
     console.log("Error in Ajax call");
-}
-
-function PasswordRequestError() {
-    document.getElementById("error-message").innerText = "The entered email address does not exist. Register a new account today!";
+    alert("Unknown error. Please refresh the page and try again.")
 }
