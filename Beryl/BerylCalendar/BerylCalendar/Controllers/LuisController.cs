@@ -68,7 +68,8 @@ namespace BerylCalendar.Controllers
         [Authorize]
         public void SetCreateEventTitle(string title){
             CookieOptions options = new CookieOptions();
-
+            
+            //"localhost" for local testing. Change also on HomeController and EventController.
             //options.Domain = "localhost";
             options.Domain = "berylcalendarapp.azurewebsites.net";
             options.Path = "/Event/CreateEvent";
