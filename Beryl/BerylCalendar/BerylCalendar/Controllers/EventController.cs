@@ -38,6 +38,8 @@ namespace BerylCalendar.Controllers
             CrudEvent crud = new CrudEvent();
             crud.types = db.Types.Select(e => e.Name).ToArray();
             crud.eve = new Event();
+            crud.eve.StartDateTime = DateTime.Today;
+            crud.eve.EndDateTime = DateTime.Today;
 
             if (Request.Cookies.ContainsKey("EventTitle")){
                 crud.eve.Title = Request.Cookies["EventTitle"];
@@ -53,9 +55,10 @@ namespace BerylCalendar.Controllers
                 crud.eve.AccountId = db.Accounts.Where(e => e.Username == userManager.GetUserName(User)).Select(e => e.Id).ToArray()[0];
                 crud.eve.StartDateTime = DateTimeUtilities.CombineDateTime(crud.eve.StartDateTime, crud.startTime);
                 crud.eve.EndDateTime = DateTimeUtilities.CombineDateTime(crud.eve.EndDateTime, crud.endTime);
-                if (crud.eve.StartDateTime.CompareTo(crud.eve.EndDateTime) != -1){
+                if (crud.eve.StartDateTime.CompareTo(crud.eve.EndDateTime) == 1){
                     crud.types = db.Types.Select(e => e.Name).ToArray();
                     crud.eve.Title = Request.Cookies["EventTitle"];
+                    crud.errorNum = 1;
                     return View("CreateEvent", crud);
                 }
                 db.Events.Add(crud.eve);
@@ -65,6 +68,7 @@ namespace BerylCalendar.Controllers
             }
             crud.types = db.Types.Select(e => e.Name).ToArray();
             crud.eve.Title = Request.Cookies["EventTitle"];
+            crud.errorNum = 2;
             return View("CreateEvent", crud);
         }
 
