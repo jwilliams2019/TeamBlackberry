@@ -36,41 +36,40 @@ namespace BerylCalendar.Controllers
         [Authorize]
         public IActionResult CreateEvent() {
             CrudEvent crud = new CrudEvent();
-            crud.errorNum = 0;
             crud.types = db.Types.Select(e => e.Name).ToArray();
             crud.eve = new Event();
+            crud.eve.StartDateTime = DateTime.Today;
+            crud.eve.EndDateTime = DateTime.Today;
 
             if (Request.Cookies.ContainsKey("EventTitle")){
                 crud.eve.Title = Request.Cookies["EventTitle"];
-                SetCreateEventTitle("");
             }
-            return View("CreateEvent", crud);
-        } 
-
-        [Authorize]
-        public IActionResult CreateEvent(int i) {
-            CrudEvent crud = new CrudEvent();
-            crud.errorNum = i;
-            crud.types = db.Types.Select(e => e.Name).ToArray();
             return View("CreateEvent", crud);
         } 
 
         [HttpPost]
         [Authorize]
-        public IActionResult AddEvent(CrudEvent ev){ 
+        public IActionResult CreateEvent(CrudEvent crud){ 
             if (ModelState.IsValid){
-                ev.eve.TypeId = Int32.Parse(ev.typeId);
-                ev.eve.AccountId = db.Accounts.Where(e => e.Username == userManager.GetUserName(User)).Select(e => e.Id).ToArray()[0];
-                ev.eve.StartDateTime = DateTimeUtilities.CombineDateTime(ev.eve.StartDateTime, ev.startTime);
-                ev.eve.EndDateTime = DateTimeUtilities.CombineDateTime(ev.eve.EndDateTime, ev.endTime);
-                if (ev.eve.StartDateTime.CompareTo(ev.eve.EndDateTime) != -1){
-                    return RedirectToAction("CreateEvent", 2);
+                crud.eve.TypeId = Int32.Parse(crud.typeId);
+                crud.eve.AccountId = db.Accounts.Where(e => e.Username == userManager.GetUserName(User)).Select(e => e.Id).ToArray()[0];
+                crud.eve.StartDateTime = DateTimeUtilities.CombineDateTime(crud.eve.StartDateTime, crud.startTime);
+                crud.eve.EndDateTime = DateTimeUtilities.CombineDateTime(crud.eve.EndDateTime, crud.endTime);
+                if (crud.eve.StartDateTime.CompareTo(crud.eve.EndDateTime) == 1){
+                    crud.types = db.Types.Select(e => e.Name).ToArray();
+                    crud.eve.Title = Request.Cookies["EventTitle"];
+                    crud.errorNum = 1;
+                    return View("CreateEvent", crud);
                 }
-                db.Events.Add(ev.eve);
+                db.Events.Add(crud.eve);
                 db.SaveChanges();
+                SetCreateEventTitle("");
                 return View("EventCreateSuccess");
             }
-            return RedirectToAction("CreateEvent", 1);
+            crud.types = db.Types.Select(e => e.Name).ToArray();
+            crud.eve.Title = Request.Cookies["EventTitle"];
+            crud.errorNum = 2;
+            return View("CreateEvent", crud);
         }
 
         [Authorize]
@@ -126,8 +125,8 @@ namespace BerylCalendar.Controllers
         }
 
         [Authorize]
-        [Route("Event/Display/{day}/{month}/{year}")]
-        public async Task<IActionResult> Display(int day, int month, int year, string filter)
+        [Route("Event/Display/{year}/{month}/{day}")]
+        public async Task<IActionResult> Display(int year, int month, int day, string filter)
         {
             string userName = userManager.GetUserName(User);
             var events = await _eveRepo.GetAllEvents("", userName);
@@ -186,9 +185,9 @@ namespace BerylCalendar.Controllers
             if (userManager.GetUserName(User) == db.Events.Include(e => e.Account).Where(e => e.Id == id).Select(e => e.Account.Username).First()){
                 var ev = await db.Events.FindAsync(id);
                 CrudEvent crud = new CrudEvent();
-                crud.errorNum = 0;
                 crud.eve = ev;
                 crud.types = await db.Types.Select(e => e.Name).ToArrayAsync();
+                crud.typeId = crud.eve.TypeId.ToString();
                 return View(crud);
             }
             return RedirectToAction("Display");

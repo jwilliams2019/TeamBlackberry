@@ -9,8 +9,7 @@ Background:
 
 @mytag
 Scenario: Writing a Query
-    Given I am on the "Page" page
-    And I have clicked the "Feature" text box
+    Given I have clicked the "Feature" text box
     When I type on the keyboard
     Then what I type should show up in the same text box
     Examples:

@@ -85,12 +85,14 @@ namespace BerylCalendar.BDDTests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("The user will be able to access their profile by clicking on their username")]
-        public virtual void TheUserWillBeAbleToAccessTheirProfileByClickingOnTheirUsername()
+        [NUnit.Framework.DescriptionAttribute("The user clicks the dark mode switch that is on the profile page, switching the s" +
+            "ite to dark mode")]
+        public virtual void TheUserClicksTheDarkModeSwitchThatIsOnTheProfilePageSwitchingTheSiteToDarkMode()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The user will be able to access their profile by clicking on their username", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The user clicks the dark mode switch that is on the profile page, switching the s" +
+                    "ite to dark mode", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -115,28 +117,26 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 7
-  testRunner.Given("the user is logged in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+  testRunner.When("the user clicks the dark mode switch", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 8
-  testRunner.When("the user clicks their username in the top right of the screen, on the navbar", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 9
-  testRunner.Then("the user will be sent to their profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+  testRunner.Then("the sites css will be changed to a dark mode view, with a black background, inste" +
+                        "ad of the original gray light mode.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("The user clicks the dark mode switch that is on the profile page, switching the s" +
-            "ite to dark mode")]
-        public virtual void TheUserClicksTheDarkModeSwitchThatIsOnTheProfilePageSwitchingTheSiteToDarkMode()
+        [NUnit.Framework.DescriptionAttribute("The user is in dark mode and the user clicks the dark mode button again to go bac" +
+            "k to light mode")]
+        public virtual void TheUserIsInDarkModeAndTheUserClicksTheDarkModeButtonAgainToGoBackToLightMode()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The user clicks the dark mode switch that is on the profile page, switching the s" +
-                    "ite to dark mode", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 11
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The user is in dark mode and the user clicks the dark mode button again to go bac" +
+                    "k to light mode", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 10
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -159,19 +159,15 @@ this.ScenarioInitialize(scenarioInfo);
 #line 3
 this.FeatureBackground();
 #line hidden
-#line 12
-  testRunner.Given("the the user is logged in and on the profile page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 11
+  testRunner.Given("the the user is in dark mode", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 13
+#line 12
   testRunner.When("the user clicks the dark mode switch", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 14
-  testRunner.Then("the sites css will be changed to a dark mode view, with a black background, inste" +
-                        "ad of the original gray light mode.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 15
-  testRunner.And("when the user clicks the switch again, the css will be brought back to the origin" +
-                        "al light mode.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 13
+  testRunner.Then("the sites css will be changed to a light mode view, with a grey background, inste" +
+                        "ad of the black dark mode", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
