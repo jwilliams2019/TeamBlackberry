@@ -1,5 +1,5 @@
 @model CrudEvent
-<body onload="CreateError(@Model.errorNum)">
+<body>
     <div style="text-align:center;width:90%" class="box-shadow-login boxbgcolor">
         <h1>Edit your Event:</h1>
 
@@ -60,6 +60,9 @@
                     <select asp-for="@Model.typeId">
                         <option value="@Model.eve.TypeId" selected disabled hidden>Select a Type</option>
                         @for (int i=1; i < Model.types.Length+1; i++){
+                            if (Model.typeId.CompareTo(i.ToString()) == 0) {
+                                <option value="@i" selected>@Model.types[i-1]</option>
+                            }
                             <option value="@i">@Model.types[i-1]</option>
                         }
                     </select>

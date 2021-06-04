@@ -42,7 +42,7 @@ namespace BerylCalendar.Controllers
 
             LuisAPI luis = new LuisAPI(apiKey+command);
             string luisResponse = luis.LuisListen();
-            Debug.WriteLine(luisResponse);
+            //Debug.WriteLine(luisResponse);
 
             JObject response = JObject.Parse(luisResponse);
             string intent = "Error in C# call: Unknown Error, please rephrase";
@@ -70,6 +70,7 @@ namespace BerylCalendar.Controllers
             CookieOptions options = new CookieOptions();
             
             //"localhost" for local testing. Change also on HomeController and EventController.
+            //options.Domain = "localhost";
             options.Domain = "berylcalendarapp.azurewebsites.net";
             options.Path = "/Event/CreateEvent";
             options.Secure = true;

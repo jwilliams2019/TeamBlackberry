@@ -1,10 +1,10 @@
 @model CrudEvent
-<body onload="CreateError(@Model.errorNum)">
+<body>
     <div style="text-align:center;width:90%" class="box-shadow-login boxbgcolor">
         <h1>Create an Event:</h1>
 
         <div>
-            <form asp-action="AddEvent" method="post">
+            <form asp-action="CreateEvent" method="post">
                 <div class="form-group">
                     <label asp-for="@Model.eve.Title">Title:</label>
                     <input asp-for="@Model.eve.Title" type="text" class="form-control"/>
@@ -56,12 +56,30 @@
                     <label asp-for="@Model.typeId">Event Types</label>
                     <select asp-for="@Model.typeId">
                         @for (int i=1; i < Model.types.Length+1; i++){
+                            if (Model.typeId == null) {
+                                if (i == 1){
+                                    <option value="@i" selected>@Model.types[i-1]</option>
+                                }
+                            } else {
+                                if (Model.typeId.CompareTo(i.ToString()) == 0) {
+                                    <option value="@i" selected>@Model.types[i-1]</option>
+                                }
+                            }
                             <option value="@i">@Model.types[i-1]</option>
                         }
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary">Create Event</button>
+                <button type="submit" class="btn btn-primary" id="CrudButton">Create Event</button>
             </form>
         </div>
     </div>
 </body>
+
+
+<script>
+    if (@Model.errorNum == 1){
+        alert("The End Date and Time cannot be prior to the Start Date and Time!");
+    } else if (@Model.errorNum == 2) {
+        alert("You submitted an invalid form. Please enter information in the appropriate places.");
+    }
+</script>
