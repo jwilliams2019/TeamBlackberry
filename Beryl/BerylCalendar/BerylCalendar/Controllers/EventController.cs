@@ -126,8 +126,8 @@ namespace BerylCalendar.Controllers
         }
 
         [Authorize]
-        [Route("Event/Display/{day}/{month}/{year}")]
-        public async Task<IActionResult> Display(int day, int month, int year, string filter)
+        [Route("Event/Display/{year}/{month}/{day}")]
+        public async Task<IActionResult> Display(int year, int month, int day, string filter)
         {
             string userName = userManager.GetUserName(User);
             var events = await _eveRepo.GetAllEvents("", userName);
