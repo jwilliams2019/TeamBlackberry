@@ -13,7 +13,6 @@ namespace BerylCalendar.Models
         public string idString { get; set; }
         public DateTime startTime { get; set; }
         public DateTime endTime { get; set; }
-        public int errorNum { get; set; }
         public string[] types { get; set; }
     }
 }

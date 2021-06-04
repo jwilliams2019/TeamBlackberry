@@ -1,10 +1,10 @@
 @model CrudEvent
-<body onload="CreateError(@Model.errorNum)">
+<body>
     <div style="text-align:center;width:90%" class="box-shadow-login boxbgcolor">
         <h1>Create an Event:</h1>
 
         <div>
-            <form asp-action="AddEvent" method="post">
+            <form asp-action="CreateEvent" method="post">
                 <div class="form-group">
                     <label asp-for="@Model.eve.Title">Title:</label>
                     <input asp-for="@Model.eve.Title" type="text" class="form-control"/>
@@ -60,7 +60,7 @@
                         }
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary">Create Event</button>
+                <button type="submit" class="btn btn-primary" id="CrudButton">Create Event</button>
             </form>
         </div>
     </div>
