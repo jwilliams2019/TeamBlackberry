@@ -41,7 +41,6 @@ namespace BerylCalendar.Controllers
 
             if (Request.Cookies.ContainsKey("EventTitle")){
                 crud.eve.Title = Request.Cookies["EventTitle"];
-                SetCreateEventTitle("");
             }
             return View("CreateEvent", crud);
         } 
@@ -55,12 +54,15 @@ namespace BerylCalendar.Controllers
                 crud.eve.StartDateTime = DateTimeUtilities.CombineDateTime(crud.eve.StartDateTime, crud.startTime);
                 crud.eve.EndDateTime = DateTimeUtilities.CombineDateTime(crud.eve.EndDateTime, crud.endTime);
                 if (crud.eve.StartDateTime.CompareTo(crud.eve.EndDateTime) != -1){
+                    crud.eve.Title = Request.Cookies["EventTitle"];
                     return RedirectToAction("CreateEvent", crud);
                 }
                 db.Events.Add(crud.eve);
                 db.SaveChanges();
+                SetCreateEventTitle("");
                 return View("EventCreateSuccess");
             }
+            crud.eve.Title = Request.Cookies["EventTitle"];
             return RedirectToAction("CreateEvent", crud);
         }
 
