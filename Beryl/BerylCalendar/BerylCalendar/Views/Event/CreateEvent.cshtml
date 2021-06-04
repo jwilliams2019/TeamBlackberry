@@ -56,6 +56,9 @@
                     <label asp-for="@Model.typeId">Event Types</label>
                     <select asp-for="@Model.typeId">
                         @for (int i=1; i < Model.types.Length+1; i++){
+                            if (Model.typeId == null && i == 1) {
+                                <option value="@i" selected>@Model.types[i-1]</option>
+                            }
                             <option value="@i">@Model.types[i-1]</option>
                         }
                     </select>

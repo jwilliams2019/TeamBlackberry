@@ -54,16 +54,18 @@ namespace BerylCalendar.Controllers
                 crud.eve.StartDateTime = DateTimeUtilities.CombineDateTime(crud.eve.StartDateTime, crud.startTime);
                 crud.eve.EndDateTime = DateTimeUtilities.CombineDateTime(crud.eve.EndDateTime, crud.endTime);
                 if (crud.eve.StartDateTime.CompareTo(crud.eve.EndDateTime) != -1){
+                    crud.types = db.Types.Select(e => e.Name).ToArray();
                     crud.eve.Title = Request.Cookies["EventTitle"];
-                    return RedirectToAction("CreateEvent", crud);
+                    return View("CreateEvent", crud);
                 }
                 db.Events.Add(crud.eve);
                 db.SaveChanges();
                 SetCreateEventTitle("");
                 return View("EventCreateSuccess");
             }
+            crud.types = db.Types.Select(e => e.Name).ToArray();
             crud.eve.Title = Request.Cookies["EventTitle"];
-            return RedirectToAction("CreateEvent", crud);
+            return View("CreateEvent", crud);
         }
 
         [Authorize]
@@ -181,6 +183,7 @@ namespace BerylCalendar.Controllers
                 CrudEvent crud = new CrudEvent();
                 crud.eve = ev;
                 crud.types = await db.Types.Select(e => e.Name).ToArrayAsync();
+                crud.typeId = crud.eve.TypeId.ToString();
                 return View(crud);
             }
             return RedirectToAction("Display");

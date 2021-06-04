@@ -62,7 +62,6 @@ namespace BerylCalendar.Controllers
                 token = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(token));
 
                 string link = "https://localhost:5001/Home/PasswordChange/?token=" + token;
-                
                 await _emailSender.SendEmailAsync(emailForPass, "Change your Password", 
                     htmlMessage: $"Change your password by <a href='{HtmlEncoder.Default.Encode(link)}'>clicking here</a>.");
 
