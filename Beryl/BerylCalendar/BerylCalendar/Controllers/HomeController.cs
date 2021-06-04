@@ -111,5 +111,10 @@ namespace BerylCalendar.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public IActionResult Credits()
+        {
+            return View("Credits");
+        }
     }
 }

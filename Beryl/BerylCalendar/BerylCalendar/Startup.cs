@@ -17,6 +17,7 @@ using BerylCalendar.Data.Abstract;
 using BerylCalendar.Data.Concrete;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using AspNetCoreEmailConfirmationSendGrid.Services;
+using reCAPTCHA.AspNetCore;
 
 namespace BerylCalendar
 {
@@ -55,6 +56,8 @@ namespace BerylCalendar
             // using WebPWrecover.Services;
             services.AddTransient<IEmailSender, EmailSender>();
             services.Configure<AuthMessageSenderOptions>(Configuration);
+
+            services.AddRecaptcha(Configuration.GetSection("RecaptchaSettings"));
 
         }
 
