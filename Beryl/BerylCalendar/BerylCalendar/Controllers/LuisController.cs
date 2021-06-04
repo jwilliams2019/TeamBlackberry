@@ -42,7 +42,7 @@ namespace BerylCalendar.Controllers
 
             LuisAPI luis = new LuisAPI(apiKey+command);
             string luisResponse = luis.LuisListen();
-            Debug.WriteLine(luisResponse);
+            //Debug.WriteLine(luisResponse);
 
             JObject response = JObject.Parse(luisResponse);
             string intent = "Error in C# call: Unknown Error, please rephrase";
