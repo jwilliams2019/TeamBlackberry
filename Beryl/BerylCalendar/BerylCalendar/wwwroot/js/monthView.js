@@ -45,7 +45,7 @@ $("#next").click(function () {
 });
 
 function formatMonth() {
-    document.getElementById("monthName").innerText = monthNames[baseMonth.getMonth()];
+    document.getElementById("monthName").innerText = monthNames[baseMonth.getMonth()] + " " + baseMonth.getFullYear();
     document.getElementById("days").textContent = '';
     findUsedDays();
 
@@ -55,7 +55,7 @@ function formatMonth() {
     {
         if ((i >= firstDayCodeOfMonth)
             && (i < (numberOfDaysInMonth[baseMonth.getMonth()] + firstDayCodeOfMonth))) {
-            var dayLink = "/Event/Display/" + (i - firstDayCodeOfMonth + 1) + "/" + (firstDayOfMonth.getMonth() + 1) + "/" + (firstDayOfMonth.getFullYear());
+            var dayLink = "/Event/Display/" + (firstDayOfMonth.getFullYear()) + "/" + (firstDayOfMonth.getMonth() + 1) + "/" + (i - firstDayCodeOfMonth + 1);
             var dayOfMonth = i - firstDayCodeOfMonth + 1;
             var elem = document.createElement("li");
             var linkElem = document.createElement("a");
@@ -69,7 +69,7 @@ function formatMonth() {
         }
         else {
             var elem = document.createElement("li");
-            elem.innerText = '';
+            elem.innerText = "_";
             document.getElementById("days").appendChild(elem);
         }
     }
