@@ -15,7 +15,6 @@ using BerylCalendar.Data.Abstract;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 
 namespace BerylCalendar.Controllers
@@ -40,22 +39,27 @@ namespace BerylCalendar.Controllers
         [HttpPost]
         [Authorize]
         public IActionResult Interpret(string command){
-            Debug.WriteLine(command);
+
             LuisAPI luis = new LuisAPI(apiKey+command);
             string luisResponse = luis.LuisListen();
             Debug.WriteLine(luisResponse);
 
             JObject response = JObject.Parse(luisResponse);
-            string intent = "Error in C# call";
+            string intent = "Error in C# call: Unknown Error, please rephrase";
             try {
                 intent = (string)response["prediction"]["topIntent"];
             } catch (NullReferenceException e) {
-                Debug.WriteLine("Error in C# call");
+                Debug.WriteLine(e);
+                intent = "Error in C# call: No intent recognized, please rephrase";
             }
 
-            if (intent.Equals("Error in C# call") == false){
-                if (intent.Equals("Calendar.CreateEventWithTitle") != false){
-                    SetCreateEventTitle((string)response["prediction"]["entities"]["Title"][0]);
+            if (intent.Substring(0,5).Equals("Error") == false){
+                if (intent.Equals("Calendar.CreateEventWithTitle") == true){
+                    try {
+                        SetCreateEventTitle((string)response["prediction"]["entities"]["Title"][0]);
+                    } catch (NullReferenceException e) {
+                        Debug.WriteLine(e);
+                    }
                 }
             }
             return Json(intent);
