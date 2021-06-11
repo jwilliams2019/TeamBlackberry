@@ -3,36 +3,34 @@ Feature: As an account holder, I want to be able to write in common language to 
 A connection to luis to be able to understand a command to start an event and possibly give it a title.
 
 Background:
-    Given I am user "User"
-    And I am logged in
-    And I am on the Display Page
+    Given I am logged in as a user
+      And I am on the Display Page
 
 @mytag
 Scenario: Writing a Query
     Given I have clicked the "Feature" text box
-    When I type on the keyboard
-    Then what I type should show up in the same text box
+    When I type "Phrase" on the keyboard
+    Then "ResultPhrase" shows up in the text box
     Examples:
-        | Page    | Feature |
-        | Display | Luis    |
+        | Feature | Phrase | ResultPhrase |
+        | Luis    | Hello  | Hello        |
 
 @mytag
 Scenario: Opening the CreateEvent page via Luis
-    Given I have typed "EventQuery" in the Luis text box
+    Given I have typed "Query" in the Luis text box
     When I click the Interpret button
-    Then the CreateEvent page will be opened with blank fields
+    Then the CreateEvent page will be opened with default values
     Examples:
-        | EventQuery             |
+        | Query                  |
         | Create a new Event     |
         | Schedule a new meeting |
 
 @mytag 
 Scenario: Opening the CreateEvent page with a Title field preset via Luis
-    Given I have typed "TitleQuery" in the Luis text box
-    And I have clicked the Interpret button
-    And the "ResultPage" opens
-    Then the Title field in the page will show "Title"
+    Given I have typed "Query" in the Luis text box
+    When I click the Interpret button
+    Then the CreateEvent page will be opened with the Title being "Title"
     Examples:
-        | TitleQuery                                                  | ResultPage  | Title                 |
-        | Create a new appointment called Doctor's appointment        | CreateEvent | Doctor's appointment  |
-        | Create a new space in my calendar for Hangin' with the bros | CreateEvent | Hangin' with the bros |
+        | Query                                                       | Title                 |
+        | Create a new appointment called Doctor's appointment        | Doctor's appointment  |
+        | Create a new space in my calendar for Hangin' with the bros | Hangin' with the bros |

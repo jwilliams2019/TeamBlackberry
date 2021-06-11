@@ -1441,6 +1441,18 @@
           "build/netcoreapp2.1/NUnit3TestAdapter.props": {}
         }
       },
+      "reCAPTCHA.AspNetCore/3.0.10": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.1/reCAPTCHA.AspNetCore.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/reCAPTCHA.AspNetCore.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {
         "type": "package",
         "runtimeTargets": {
@@ -3366,7 +3378,8 @@
           "Selenium.WebDriver": "3.141.0",
           "SendGrid": "9.23.1",
           "SpecFlow.NUnit": "3.7.38",
-          "SpecFlow.Plus.LivingDocPlugin": "3.7.141"
+          "SpecFlow.Plus.LivingDocPlugin": "3.7.141",
+          "reCAPTCHA.AspNetCore": "3.0.10"
         },
         "compile": {
           "bin/placeholder/BerylCalendar.dll": {}
@@ -5686,6 +5699,19 @@
         "build/netcoreapp2.1/nunit.engine.dll",
         "nunit3testadapter.3.16.1.nupkg.sha512",
         "nunit3testadapter.nuspec"
+      ]
+    },
+    "reCAPTCHA.AspNetCore/3.0.10": {
+      "sha512": "MJ3MCMBWr4gd+JZBXyUyT+YOdnMTNlysRrWKne/B/4hSxrpqERxinenvup6hVkQAoPz0DXzzJDujROEQPwohow==",
+      "type": "package",
+      "path": "recaptcha.aspnetcore/3.0.10",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "lib/netcoreapp3.1/reCAPTCHA.AspNetCore.dll",
+        "recaptcha.aspnetcore.3.0.10.nupkg.sha512",
+        "recaptcha.aspnetcore.nuspec"
       ]
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {
@@ -10758,19 +10784,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\rmap4\\.nuget\\packages\\": {}
+    "C:\\Users\\jaws9\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\rmap4\\TeamBlackberry\\Beryl\\BerylCalendar\\BerylCalendar.Tests\\BerylCalendar.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\jaws9\\Desktop\\HW\\cs462\\TeamBlackberry\\Beryl\\BerylCalendar\\BerylCalendar.Tests\\BerylCalendar.Tests.csproj",
       "projectName": "BerylCalendar.Tests",
-      "projectPath": "C:\\Users\\rmap4\\TeamBlackberry\\Beryl\\BerylCalendar\\BerylCalendar.Tests\\BerylCalendar.Tests.csproj",
-      "packagesPath": "C:\\Users\\rmap4\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\rmap4\\TeamBlackberry\\Beryl\\BerylCalendar\\BerylCalendar.Tests\\obj\\",
+      "projectPath": "C:\\Users\\jaws9\\Desktop\\HW\\cs462\\TeamBlackberry\\Beryl\\BerylCalendar\\BerylCalendar.Tests\\BerylCalendar.Tests.csproj",
+      "packagesPath": "C:\\Users\\jaws9\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\jaws9\\Desktop\\HW\\cs462\\TeamBlackberry\\Beryl\\BerylCalendar\\BerylCalendar.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\rmap4\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\jaws9\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -10784,8 +10810,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\rmap4\\TeamBlackberry\\Beryl\\BerylCalendar\\BerylCalendar\\BerylCalendar.csproj": {
-              "projectPath": "C:\\Users\\rmap4\\TeamBlackberry\\Beryl\\BerylCalendar\\BerylCalendar\\BerylCalendar.csproj"
+            "C:\\Users\\jaws9\\Desktop\\HW\\cs462\\TeamBlackberry\\Beryl\\BerylCalendar\\BerylCalendar\\BerylCalendar.csproj": {
+              "projectPath": "C:\\Users\\jaws9\\Desktop\\HW\\cs462\\TeamBlackberry\\Beryl\\BerylCalendar\\BerylCalendar\\BerylCalendar.csproj"
             }
           }
         }

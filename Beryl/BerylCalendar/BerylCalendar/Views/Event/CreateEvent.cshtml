@@ -7,21 +7,21 @@
             <form asp-action="CreateEvent" method="post">
                 <div class="form-group">
                     <label asp-for="@Model.eve.Title">Title:</label>
-                    <input asp-for="@Model.eve.Title" type="text" class="form-control"/>
+                    <input asp-for="@Model.eve.Title" type="text" id=Title class="form-control"/>
                     <span asp-validation-for="@Model.eve.Title" class="text-danger"></span>
                 </div>
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
                             <label asp-for="@Model.eve.StartDateTime">Event Starting Date:</label>
-                            <input asp-for="@Model.eve.StartDateTime" type="Date" class="form-control"/>
+                            <input asp-for="@Model.eve.StartDateTime" type="Date" id=StartDateTime class="form-control"/>
                             <span asp-validation-for="@Model.eve.StartDateTime" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
                             <label asp-for="@Model.startTime">Event Starting Time:</label>
-                            <input asp-for="@Model.startTime" type="Time" class="form-control"/>
+                            <input asp-for="@Model.startTime" type="Time" id=startTime class="form-control"/>
                             <span asp-validation-for="@Model.startTime" class="text-danger"></span>
                         </div>
                     </div>
@@ -30,31 +30,31 @@
                     <div class="col">
                         <div class="form-group">
                             <label asp-for="@Model.eve.EndDateTime">Event Ending Date:</label>
-                            <input asp-for="@Model.eve.EndDateTime" type="Date" class="form-control"/>
+                            <input asp-for="@Model.eve.EndDateTime" type="Date" id=EndDateTime class="form-control"/>
                             <span asp-validation-for="@Model.eve.EndDateTime" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
                             <label asp-for="@Model.endTime">Event Ending Time:</label>
-                            <input asp-for="@Model.endTime" type="Time" class="form-control"/>
+                            <input asp-for="@Model.endTime" type="Time" id=endTime class="form-control"/>
                             <span asp-validation-for="@Model.endTime" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label asp-for="@Model.eve.Location">Event Location:</label>
-                    <input asp-for="@Model.eve.Location" type="text" class="form-control"/>
+                    <input asp-for="@Model.eve.Location" type="text" id=Location class="form-control"/>
                     <span asp-validation-for="@Model.eve.Location" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="@Model.eve.Details">Event Details:</label>
-                    <input asp-for="@Model.eve.Details" type="text" class="form-control"/>
+                    <input asp-for="@Model.eve.Details" type="text" id=Details class="form-control"/>
                     <span asp-validation-for="@Model.eve.Details" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="@Model.typeId">Event Types</label>
-                    <select asp-for="@Model.typeId">
+                    <select asp-for="@Model.typeId" id=typeId>
                         @for (int i=1; i < Model.types.Length+1; i++){
                             if (Model.typeId == null) {
                                 if (i == 1){
